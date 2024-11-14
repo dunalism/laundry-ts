@@ -46,17 +46,15 @@ export function AppSidebar() {
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
+                <SidebarMenuItem className="" key={item.title}>
                   <SidebarMenuButton
                     {...(location === `/${item.url}`
                       ? { isActive: true }
                       : { isActive: false })}
                     asChild
+                    className="hover:bg-neutral hover:text-neutral-content text-base"
                   >
-                    <Link
-                      className="text-zinc-800 dark:text-zinc-200"
-                      to={item.url}
-                    >
+                    <Link className="" to={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
                     </Link>

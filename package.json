@@ -32,6 +32,7 @@
     "redux": "5.0.1",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7",
+    "theme-change": "^2.5.0",
     "zod": "3.23.8"
   },
   "devDependencies": {
@@ -41,6 +42,7 @@
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.3",
     "autoprefixer": "^10.4.20",
+    "daisyui": "^4.12.14",
     "eslint": "^9.13.0",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",
