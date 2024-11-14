@@ -8,8 +8,9 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { NavLink } from "react-router-dom";
 
-export default function LoginForm() {
+export function LoginForm() {
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
@@ -32,12 +33,9 @@ export default function LoginForm() {
           <div className="grid gap-2">
             <div className="flex items-center">
               <Label htmlFor="password">Password</Label>
-              <link
-                href="http://localhost:5173"
-                className="ml-auto inline-block text-sm underline"
-              >
+              <a className="ml-auto inline-block text-sm underline">
                 Forgot your password?
-              </link>
+              </a>
             </div>
             <Input id="password" type="password" required />
           </div>
@@ -49,10 +47,10 @@ export default function LoginForm() {
           </Button>
         </div>
         <div className="mt-4 text-center text-sm">
-          Don&apos;t have an account?{" "}
-          <link href="http://localhost:5173" className="underline">
+          Don&apos;t have an account?
+          <NavLink to={"/"} className="underline">
             Sign up
-          </link>
+          </NavLink>
         </div>
       </CardContent>
     </Card>
