@@ -2,28 +2,29 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Outlet } from "react-router-dom";
 import ThemeToggle from "@/components/theme-toggle";
-import { useEffect } from "react";
-import { themeChange } from "theme-change";
 
 export default function Layout() {
-  useEffect(() => {
-    themeChange(false);
-    // 👆 false parameter is required for react project
-  }, []);
   return (
-    <SidebarProvider>
-      <AppSidebar />
-      <main>
-        <select className="select" data-choose-theme>
-          <option value="garden">Light</option>
-          <option value="sunset">Dark</option>
-          <option value="cyberpunk">cyberpunk</option>
-        </select>
+    <>
+      <SidebarProvider className="flex max-md:hidden ">
+        <AppSidebar classname="" placement="left" />
+        <div className="px-3 pt-2 grow bg-base-200">
+          <div className="mb-3 ml-[2px]  flex justify-between">
+            <SidebarTrigger />
+            <ThemeToggle className="mt-[-2px]" />
+          </div>
+          <div className="px-1 flex-1 min-h-[542px] rounded-md">
+            <Outlet />
+          </div>
+        </div>
+      </SidebarProvider>
 
+      {/* <SidebarProvider className="hidden">
+        <AppSidebar placement="right" />
         <SidebarTrigger />
         <ThemeToggle />
         <Outlet />
-      </main>
-    </SidebarProvider>
+      </SidebarProvider> */}
+    </>
   );
 }

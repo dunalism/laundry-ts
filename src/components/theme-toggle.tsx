@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function ThemeToggle() {
+function ThemeToggle({ className }: { className?: string | undefined }) {
   // Ambil tema yang disimpan di localStorage atau default ke "garden"
   const storedTheme = localStorage.getItem("theme") || "garden";
 
@@ -19,7 +19,7 @@ function ThemeToggle() {
   };
 
   return (
-    <label className="swap swap-rotate">
+    <label className={`h-9 w-9 swap swap-rotate ${className}`}>
       {/* hidden checkbox controls the state */}
       <input
         type="checkbox"
@@ -30,7 +30,7 @@ function ThemeToggle() {
 
       {/* sun icon for garden theme */}
       <svg
-        className="swap-on h-10 w-10 fill-current"
+        className="swap-on h-8 w-8 fill-current"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
       >
@@ -39,7 +39,7 @@ function ThemeToggle() {
 
       {/* moon icon for sunset theme */}
       <svg
-        className="swap-off h-10 w-10 fill-current"
+        className="swap-off h-8 w-8 fill-current"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
       >

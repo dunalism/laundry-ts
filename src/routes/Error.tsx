@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { useRouteError } from "react-router-dom";
+import { themeChange } from "theme-change";
 
 export function ErrorFallback({ error }: { error: Error }) {
   return (
@@ -13,11 +15,15 @@ export function ErrorFallback({ error }: { error: Error }) {
 }
 
 export default function ErrorPage() {
+  useEffect(() => {
+    themeChange(false);
+    // 👆 false parameter is required for react project
+  }, []);
   const error = useRouteError();
   console.error(error);
 
   return (
-    <main className="ml-36 flex flex-col items-center  w-full">
+    <main className="bg-base-100 flex flex-col items-center h-screen justify-center  w-full">
       <h1 className="">Oops!</h1>
       <p>Sorry, an unexpected error has occurred.</p>
       <p>

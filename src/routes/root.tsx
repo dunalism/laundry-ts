@@ -5,6 +5,7 @@ import Users from "./Users";
 import Products from "./Products";
 import Transactions from "./Transactions";
 import ErrorPage from "./Error";
+import Index from "./Index";
 
 const root = createBrowserRouter(
   [
@@ -13,19 +14,11 @@ const root = createBrowserRouter(
       element: <Layout />,
       errorElement: <ErrorPage />,
       children: [
-        { index: true, element: <Dashboard /> },
-        {
-          path: "users",
-          element: <Users />,
-        },
-        {
-          path: "products",
-          element: <Products />,
-        },
-        {
-          path: "transactions",
-          element: <Transactions />,
-        },
+        { index: true, element: <Index /> },
+        { path: "/dashboard", element: <Dashboard /> },
+        { path: "users", element: <Users /> },
+        { path: "products", element: <Products /> },
+        { path: "transactions", element: <Transactions /> },
       ],
     },
   ],

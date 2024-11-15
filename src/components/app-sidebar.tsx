@@ -15,7 +15,7 @@ import {
 const items = [
   {
     title: "Dashboard",
-    url: "/",
+    url: "dashboard",
     icon: LayoutDashboard,
   },
   {
@@ -35,15 +35,23 @@ const items = [
   },
 ];
 
-export function AppSidebar() {
+export function AppSidebar({
+  placement,
+  classname,
+}: {
+  placement: "left" | "right";
+  classname?: string | undefined;
+}) {
   const location = useLocation().pathname;
 
   return (
-    <Sidebar collapsible="icon">
+    <Sidebar className={classname} side={placement} collapsible="icon">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
-          <SidebarGroupContent>
+          <SidebarGroupLabel className="mb-8 text-3xl ml-4 mt-4">
+            Laundry
+          </SidebarGroupLabel>
+          <SidebarGroupContent className="">
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem className="" key={item.title}>
@@ -52,7 +60,7 @@ export function AppSidebar() {
                       ? { isActive: true }
                       : { isActive: false })}
                     asChild
-                    className="hover:bg-neutral hover:text-neutral-content text-base"
+                    className="hover:bg-neutral hover:text-neutral-content text-base pl-7"
                   >
                     <Link className="" to={item.url}>
                       <item.icon />

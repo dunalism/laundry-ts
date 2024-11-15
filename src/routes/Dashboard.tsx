@@ -1,9 +1,10 @@
+import Statistic from "@/components/statisticCard";
+
 function Dashboard() {
   return (
-    <div>
+    <div className="">
       <p>Dashboard</p>
-      <a href="#">haloo</a>
-      <b>hahai</b>
+      <Statistic title="Ini Statistic" value={123} />
     </div>
   );
 }
