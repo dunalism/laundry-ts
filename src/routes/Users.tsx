@@ -1,7 +1,10 @@
+import AvatarUsers from "@/components/avatarUser";
+
 function Users() {
   return (
     <div>
-      Users <div>ujang</div>
+      Users
+      <AvatarUsers />
     </div>
   );
 }
