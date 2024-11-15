@@ -1,10 +1,11 @@
 import Statistic from "@/components/statisticCard";
+import { Package } from "lucide-react";
 
 function Dashboard() {
   return (
     <div className="">
-      <p>Dashboard</p>
-      <Statistic title="Ini Statistic" value={123} />
+      <h1>Dashboard</h1>
+      <Statistic icon={<Package />} title="Ini Statistic" value={123} />
     </div>
   );
 }

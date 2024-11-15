@@ -30,7 +30,7 @@ function ThemeToggle({ className }: { className?: string | undefined }) {
 
       {/* sun icon for garden theme */}
       <svg
-        className="swap-on h-8 w-8 fill-current"
+        className="swap-on h-7 w-7 fill-current"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
       >
@@ -39,7 +39,7 @@ function ThemeToggle({ className }: { className?: string | undefined }) {
 
       {/* moon icon for sunset theme */}
       <svg
-        className="swap-off h-8 w-8 fill-current"
+        className="swap-off h-7 w-7 fill-current"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
       >

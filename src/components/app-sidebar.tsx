@@ -48,14 +48,15 @@ export function AppSidebar({
     <Sidebar className={classname} side={placement} collapsible="icon">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel className="mb-8 text-3xl ml-4 mt-4">
-            Laundry
+          <SidebarGroupLabel className="prose mb-10">
+            <h1 className="ml-5 mt-2">Laundry</h1>
           </SidebarGroupLabel>
           <SidebarGroupContent className="">
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem className="" key={item.title}>
                   <SidebarMenuButton
+                    tooltip={item.title}
                     {...(location === `/${item.url}`
                       ? { isActive: true }
                       : { isActive: false })}

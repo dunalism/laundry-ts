@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { VariantProps, cva } from "class-variance-authority";
-import { AlignJustify } from "lucide-react";
+import { PanelLeft } from "lucide-react";
 
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
@@ -138,7 +138,7 @@ const SidebarProvider = React.forwardRef<
               } as React.CSSProperties
             }
             className={cn(
-              "group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-sidebar",
+              "group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-neutral",
               className
             )}
             ref={ref}
@@ -178,7 +178,7 @@ const Sidebar = React.forwardRef<
       return (
         <div
           className={cn(
-            "flex h-full w-[--sidebar-width] flex-col bg-sidebar text-sidebar-foreground",
+            "flex h-full w-[--sidebar-width] flex-col bg-neutral text-sidebar-foreground",
             className
           )}
           ref={ref}
@@ -195,7 +195,7 @@ const Sidebar = React.forwardRef<
           <SheetContent
             data-sidebar="sidebar"
             data-mobile="true"
-            className="w-[--sidebar-width] bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
+            className="w-[--sidebar-width] diedit bg-base-100 p-0 text-sidebar-foreground [&>button]:hidden"
             style={
               {
                 "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
@@ -259,7 +259,7 @@ Sidebar.displayName = "Sidebar";
 const SidebarTrigger = React.forwardRef<
   React.ElementRef<typeof button>,
   React.ComponentProps<typeof button>
->(({ className, onClick, ...props }, ref) => {
+>(({ className, onClick, icon, ...props }, ref) => {
   const { toggleSidebar } = useSidebar();
 
   return (
@@ -275,7 +275,7 @@ const SidebarTrigger = React.forwardRef<
       }}
       {...props}
     >
-      <AlignJustify />
+      {icon || <PanelLeft />}
       <span className="sr-only">Toggle Sidebar</span>
     </button>
   );
