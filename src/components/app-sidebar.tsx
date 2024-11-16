@@ -1,8 +1,9 @@
-import { Receipt, User, Package, LayoutDashboard } from "lucide-react";
+import { Receipt, User, User2, Package, LayoutDashboard } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -10,29 +11,23 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { Users } from "@/lib/definition";
+import { NavUser } from "./ui/nav-user";
+
+const user: Users = {
+  name: "Hamdika",
+  role: "owner",
+  avatar:
+    "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=dunalism&size=200",
+};
 
 // Menu items.
 const items = [
-  {
-    title: "Dashboard",
-    url: "dashboard",
-    icon: LayoutDashboard,
-  },
-  {
-    title: "User",
-    url: "users",
-    icon: User,
-  },
-  {
-    title: "Produk",
-    url: "products",
-    icon: Package,
-  },
-  {
-    title: "Transaksi",
-    url: "transactions",
-    icon: Receipt,
-  },
+  { title: "Dashboard", url: "dashboard", icon: LayoutDashboard },
+  { title: "Users", url: "users", icon: User },
+  { title: "Products", url: "products", icon: Package },
+  { title: "Customers", url: "customers", icon: User2 },
+  { title: "Transactions", url: "transactions", icon: Receipt },
 ];
 
 export function AppSidebar({
@@ -74,6 +69,9 @@ export function AppSidebar({
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter>
+        <NavUser user={user} />
+      </SidebarFooter>
     </Sidebar>
   );
 }

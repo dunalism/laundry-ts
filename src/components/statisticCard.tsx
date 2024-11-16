@@ -1,38 +1,35 @@
-// components/StatisticsCard.tsx
+import React, { ReactElement } from "react";
 
-import React from "react";
-
-// Definisikan tipe props untuk komponen
-interface StatisticsCardProps {
-  title: string;
-  value: number | string;
-  icon?: React.ReactNode; // Komponen ikon opsional
-  bgColor?: string; // Warna background opsional untuk card
-}
-
-// Komponen StatisticsCard
-const StatisticsCard: React.FC<StatisticsCardProps> = ({
+function StatisticCard({
   title,
-  value,
-  icon,
-  bgColor,
-}) => {
+  total,
+  iconColor,
+  Icon,
+}: {
+  title: string;
+  total: number;
+  iconColor: string;
+  Icon: ReactElement;
+}) {
   return (
-    <div
-      className={`card w-full max-w-xs shadow-lg p-4 rounded-lg ${
-        bgColor || "bg-base-100"
-      }`}
-    >
-      <div className="flex items-center justify-between">
-        {/* Menampilkan ikon jika ada */}
-        {icon && <div className="text-3xl text-primary">{icon}</div>}
-        <div className="text-right">
-          <p className="text-sm text-gray-500">{title}</p>
-          <p className="text-2xl font-bold text-primary">{value}</p>
-        </div>
-      </div>
+    <div>
+      <main className="card bg-base-100 w-72 shadow-lg">
+        <section className="card-body">
+          <div className="flex box-border justify-between">
+            <div className="card-title mb-3 mt-[-6px]">{title}</div>
+            <div
+              className={`rounded-full box-border avatar w-10 h-10 ${iconColor}`}
+            >
+              {React.cloneElement(Icon, {
+                className: `${Icon.props.className || ""} ml-2 mt-2 text-white`, // Tambahkan gaya default
+              })}
+            </div>
+          </div>
+          <p className="text-xl">{total}</p>
+        </section>
+      </main>
     </div>
   );
-};
+}
 
-export default StatisticsCard;
+export default StatisticCard;

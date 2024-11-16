@@ -1,10 +1,21 @@
-import AvatarUsers from "@/components/avatarUser";
+import { useEffect } from "react";
+import { themeChange } from "theme-change";
 
 function Users() {
+  useEffect(() => {
+    themeChange(false); // false agar tidak perlu toggle ulang saat reload
+  }, []);
   return (
     <div>
       Users
-      <AvatarUsers />
+      <div>hhai</div>
+      <button
+        data-set-theme="cyberpunk"
+        data-act-class="ACTIVECLASS"
+        className="btn"
+      >
+        cyberpunk
+      </button>
     </div>
   );
 }
