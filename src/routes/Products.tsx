@@ -79,11 +79,18 @@ function ProductsPage() {
   ];
 
   return (
-    <div className="container relative peer px-10 ">
-      <h2 className="text-xl mb-6 ml-1 font-semibold ">Products</h2>
+    <div className="container box-border peer px-10 ">
+      <section className="prose mt-6">
+        <h2
+          data-state={state}
+          className=" mb-6 ml-1  data-[state=collapsed]:ml-[75px] "
+        >
+          Products
+        </h2>
+      </section>
       <div
         data-state={state}
-        className="card data-[state=collapsed]:left-[69px]  relative bg-base-100  shadow-lg"
+        className="card data-[state=collapsed]:left-[70px]   bg-base-100 h-[380px] overflow-auto shadow-lg"
       >
         <div className="card-body">
           <DataTable columns={columns} data={products} />

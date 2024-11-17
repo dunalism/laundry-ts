@@ -14,7 +14,7 @@ export default function Layout() {
             <SidebarTrigger className="mt-1 ml-2" />
             <ThemeToggle className="mt-[-2px] mr-1 " />
           </nav>
-          <div className="box-border peer flex-1 min-h-[534px]">
+          <div className="box-border peer flex-1 min-h-[522px]">
             <Outlet />
           </div>
         </div>

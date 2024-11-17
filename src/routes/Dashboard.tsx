@@ -1,4 +1,5 @@
 import StatisticCard from "@/components/statisticCard";
+import { useSidebar } from "@/components/ui/sidebar";
 import {
   Users,
   Users2,
@@ -9,12 +10,18 @@ import {
 } from "lucide-react";
 
 function Dashboard() {
+  const { state } = useSidebar();
   return (
-    <main className="flex flex-col box-border ">
+    <main className=" flex p-7 ml-3 flex-col box-border ">
       <section className="prose mb-5 mt-[-1rem] ">
-        <h2>Dashboard</h2>
+        <h2 data-state={state} className="data-[state=collapsed]:ml-[75px] ">
+          Dashboard
+        </h2>
       </section>
-      <section className="grid grid-cols-3 gap-4">
+      <section
+        data-state={state}
+        className="grid grid-cols-3 gap-4 data-[state=collapsed]:ml-[70px] "
+      >
         <StatisticCard
           Icon={<Users />}
           iconColor="bg-red-500"
