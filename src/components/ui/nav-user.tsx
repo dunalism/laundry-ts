@@ -50,7 +50,7 @@ export function NavUser({
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
-              className="data-[state=open]:bg-neutral data-[state=open]:text-neutral-content hover:bg-base-300 hover:text-base-content"
+              className="data-[state=open]:bg-neutral data-[state=open]:text-neutral-content hover:bg-base-300 hover:text-base-content dark:hover:bg-neutral "
             >
               <Avatar className="h-8 w-8 rounded-lg">
                 <AvatarImage src={user.avatar} alt={user.name} />

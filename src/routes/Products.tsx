@@ -1,3 +1,4 @@
+import DemoPage from "@/components/payments/page";
 import { Products } from "@/lib/definition";
 
 function ProductsPage() {
@@ -42,6 +43,7 @@ function ProductsPage() {
   return (
     <div>
       <div>Products</div>
+      <DemoPage />
     </div>
   );
 }
