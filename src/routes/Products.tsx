@@ -1,7 +1,10 @@
-import DemoPage from "@/components/payments/page";
+import { DataTable } from "@/components/data-table";
+import { columns } from "@/components/productColumns";
+import { useSidebar } from "@/components/ui/sidebar";
 import { Products } from "@/lib/definition";
 
 function ProductsPage() {
+  const { state } = useSidebar();
   const products: Products[] = [
     {
       id: 1,
@@ -38,12 +41,54 @@ function ProductsPage() {
       createdAt: "2024-10-23 17:00:00",
       type: "Per Pcs",
     },
+    {
+      id: 5,
+      name: "Cuci Selimut",
+      price: 35000,
+      createdAt: "2024-10-23 17:00:00",
+      type: "Per Pcs",
+    },
+    {
+      id: 5,
+      name: "Cuci Selimut",
+      price: 35000,
+      createdAt: "2024-10-23 17:00:00",
+      type: "Per Pcs",
+    },
+    {
+      id: 5,
+      name: "Cuci Selimut",
+      price: 35000,
+      createdAt: "2024-10-23 17:00:00",
+      type: "Per Pcs",
+    },
+    {
+      id: 5,
+      name: "Cuci Selimut",
+      price: 35000,
+      createdAt: "2024-10-23 17:00:00",
+      type: "Per Pcs",
+    },
+    {
+      id: 5,
+      name: "Cuci Selimut",
+      price: 35000,
+      createdAt: "2024-10-23 17:00:00",
+      type: "Per Pcs",
+    },
   ];
 
   return (
-    <div>
-      <div>Products</div>
-      <DemoPage />
+    <div className="container relative peer px-10 ">
+      <h2 className="text-xl mb-6 ml-1 font-semibold ">Products</h2>
+      <div
+        data-state={state}
+        className="card data-[state=collapsed]:left-[69px]  relative bg-base-100  shadow-lg"
+      >
+        <div className="card-body">
+          <DataTable columns={columns} data={products} />
+        </div>
+      </div>
     </div>
   );
 }

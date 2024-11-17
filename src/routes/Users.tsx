@@ -1,3 +1,4 @@
+import DemoPage from "@/components/payments/page";
 import { useEffect } from "react";
 import { themeChange } from "theme-change";
 
@@ -16,6 +17,7 @@ function Users() {
       >
         cyberpunk
       </button>
+      <DemoPage />
     </div>
   );
 }

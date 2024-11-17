@@ -178,7 +178,7 @@ const Sidebar = React.forwardRef<
       return (
         <div
           className={cn(
-            "flex h-full w-[--sidebar-width] flex-col bg-neutral text-sidebar-foreground",
+            "flex peer h-full w-[--sidebar-width] flex-col bg-neutral text-sidebar-foreground",
             className
           )}
           ref={ref}
@@ -195,7 +195,7 @@ const Sidebar = React.forwardRef<
           <SheetContent
             data-sidebar="sidebar"
             data-mobile="true"
-            className="w-[--sidebar-width] diedit bg-base-100 p-0 text-sidebar-foreground [&>button]:hidden"
+            className="w-[--sidebar-width] peer diedit bg-base-100 p-0 text-sidebar-foreground [&>button]:hidden"
             style={
               {
                 "--sidebar-width": SIDEBAR_WIDTH_MOBILE,

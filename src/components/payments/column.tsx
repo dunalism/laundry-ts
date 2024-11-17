@@ -56,7 +56,6 @@ export const columns: ColumnDef<Payment>[] = [
       // />
       <input
         type="checkbox"
-        id={row.id}
         checked={row.getIsSelected()}
         ref={(el) => {
           if (el) el.indeterminate = row.getIsSomeSelected(); // Set the indeterminate state

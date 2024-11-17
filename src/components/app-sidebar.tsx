@@ -40,7 +40,11 @@ export function AppSidebar({
   const location = useLocation().pathname;
 
   return (
-    <Sidebar className={classname} side={placement} collapsible="icon">
+    <Sidebar
+      className={`${classname} peer`}
+      side={placement}
+      collapsible="icon"
+    >
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel className="prose mb-10">
