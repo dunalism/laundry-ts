@@ -93,7 +93,7 @@ function ProductsPage() {
         className="card data-[state=collapsed]:left-[70px]   bg-base-100 h-[380px] overflow-auto shadow-lg"
       >
         <div className="card-body">
-          <DataTable columns={columns} data={products} />
+          <DataTable columns={columns} data={products} searchBy="name" />
         </div>
       </div>
     </div>

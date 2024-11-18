@@ -1,5 +1,12 @@
 import { Products } from "@/lib/definition";
 import { ColumnDef } from "@tanstack/react-table";
+import { PencilLineIcon, Trash2 } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./ui/tooltip";
 
 export const columns: ColumnDef<Products>[] = [
   {
@@ -35,7 +42,7 @@ export const columns: ColumnDef<Products>[] = [
       />
     ),
     enableSorting: false,
-    enableHiding: false,
+    enableHiding: true,
   },
   {
     accessorKey: "name",
@@ -48,5 +55,37 @@ export const columns: ColumnDef<Products>[] = [
   {
     accessorKey: "type",
     header: "Type",
+  },
+  {
+    id: "actions",
+    accessorKey: "Actions",
+    cell: ({ row }) => {
+      const products = row.original;
+      return (
+        <div className="flex gap-3">
+          <TooltipProvider disableHoverableContent={true} delayDuration={200}>
+            <Tooltip>
+              <TooltipTrigger>
+                <PencilLineIcon
+                  onClick={() => console.log(products.name)}
+                  className="text-info "
+                />
+              </TooltipTrigger>
+              <TooltipContent>Edit</TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+
+          <TooltipProvider disableHoverableContent={true} delayDuration={200}>
+            <Tooltip>
+              <TooltipTrigger>
+                <Trash2 className="text-error " />
+              </TooltipTrigger>
+              <TooltipContent>Delete</TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </div>
+      );
+    },
+    enableHiding: false,
   },
 ];
