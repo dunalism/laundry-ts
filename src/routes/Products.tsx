@@ -1,5 +1,5 @@
+import { columns } from "@/components/columns/product";
 import { DataTable } from "@/components/data-table";
-import { columns } from "@/components/productColumns";
 import { useSidebar } from "@/components/ui/sidebar";
 import { Products } from "@/lib/definition";
 
