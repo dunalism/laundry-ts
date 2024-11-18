@@ -68,6 +68,8 @@ export function DataTable<TData extends { id: number }, TValue>({
     },
   });
 
+  const isRowSelected = table.getFilteredSelectedRowModel().rows.length;
+
   const handleDeleteSelectedRows = () => {
     // Dapatkan ID baris yang dipilih
     const selectedIds = table
@@ -84,7 +86,7 @@ export function DataTable<TData extends { id: number }, TValue>({
   return (
     <div className="rounded-md box-border">
       <div className="flex">
-        <div className="flex items-center py-4">
+        <div className="flex gap-4 items-center py-4">
           <input
             placeholder="Search"
             value={
@@ -93,12 +95,15 @@ export function DataTable<TData extends { id: number }, TValue>({
             onChange={(event) =>
               table.getColumn(`${searchBy}`)?.setFilterValue(event.target.value)
             }
-            className="max-w-sm input input-sm border-base-300"
+            className="max-w-sm input input-sm focus:border-none border-base-300"
           />
+          {!!isRowSelected && (
+            <button className="btn btn-sm font-medium">Delete selected</button>
+          )}
         </div>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <button className="ml-auto font-medium btn btn-sm mt-auto mb-auto">
+            <button className="ml-auto text-neutral/70 font-medium theme-sunset:text-base-content/60  btn btn-sm my-auto mr-4">
               <Settings2 className="h-4 w-4 mt-[3px]" /> Columns
             </button>
           </DropdownMenuTrigger>
@@ -148,8 +153,8 @@ export function DataTable<TData extends { id: number }, TValue>({
             table.getRowModel().rows.map((row) => (
               <TableRow
                 key={row.id}
-                data-state={row.getIsSelected() && "selected"}
-                onClick={() => row.toggleSelected(!row.getIsSelected())} // Toggle selection
+                // data-state={row.getIsSelected() && "selected"}
+                // onClick={() => row.toggleSelected(!row.getIsSelected())} // Toggle selection
               >
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>

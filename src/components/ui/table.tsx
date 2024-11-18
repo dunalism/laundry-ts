@@ -80,11 +80,20 @@ const TableCell = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <td
     ref={ref}
-    className={cn("p-4 align-middle [&:has([role=checkbox])]:pr-0", className)}
+    className={cn(
+      "p-4 align-middle [&:has([role=checkbox])]:pr-0  lg:[&:has([data-rows='actions'])]:w-[150px] ",
+      className
+    )}
     {...props}
   />
 ));
 TableCell.displayName = "TableCell";
+
+<td className="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+  <div data-rows="actions" className="flex gap-3">
+    button, icon dsb..
+  </div>
+</td>;
 
 const TableCaption = React.forwardRef<
   HTMLTableCaptionElement,

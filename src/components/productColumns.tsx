@@ -9,41 +9,41 @@ import {
 } from "./ui/tooltip";
 
 export const columns: ColumnDef<Products>[] = [
-  {
-    id: "select",
-    header: ({ table }) => {
-      const isIndeterminate =
-        table.getIsSomePageRowsSelected() && !table.getIsAllPageRowsSelected();
-      return (
-        <input
-          type="checkbox"
-          checked={table.getIsAllPageRowsSelected()}
-          ref={(el) => {
-            if (el) el.indeterminate = isIndeterminate; // Set the indeterminate state
-          }}
-          onChange={(e) => table.toggleAllPageRowsSelected(e.target.checked)}
-          aria-label="Select all"
-          className="checkbox"
-        />
-      );
-    },
-    cell: ({ row }) => (
-      <input
-        type="checkbox"
-        className="checkbox"
-        checked={row.getIsSelected()}
-        ref={(el) => {
-          if (el) el.indeterminate = row.getIsSomeSelected();
-        }}
-        onChange={(e) => {
-          e.stopPropagation();
-          row.toggleSelected(e.target.checked);
-        }}
-      />
-    ),
-    enableSorting: false,
-    enableHiding: true,
-  },
+  // {belum diperlukan
+  //   id: "select",
+  //   header: ({ table }) => {
+  //     const isIndeterminate =
+  //       table.getIsSomePageRowsSelected() && !table.getIsAllPageRowsSelected();
+  //     return (
+  //       <input
+  //         type="checkbox"
+  //         checked={table.getIsAllPageRowsSelected()}
+  //         ref={(el) => {
+  //           if (el) el.indeterminate = isIndeterminate; // Set the indeterminate state
+  //         }}
+  //         onChange={(e) => table.toggleAllPageRowsSelected(e.target.checked)}
+  //         aria-label="Select all"
+  //         className="checkbox"
+  //       />
+  //     );
+  //   },
+  //   cell: ({ row }) => (
+  //     <input
+  //       type="checkbox"
+  //       className="checkbox"
+  //       checked={row.getIsSelected()}
+  //       ref={(el) => {
+  //         if (el) el.indeterminate = row.getIsSomeSelected();
+  //       }}
+  //       onChange={(e) => {
+  //         e.stopPropagation();
+  //         row.toggleSelected(e.target.checked);
+  //       }}
+  //     />
+  //   ),
+  //   enableSorting: false,
+  //   enableHiding: true,
+  // },
   {
     accessorKey: "name",
     header: "Name",
@@ -62,7 +62,7 @@ export const columns: ColumnDef<Products>[] = [
     cell: ({ row }) => {
       const products = row.original;
       return (
-        <div className="flex gap-3">
+        <div data-rows="actions" className="flex gap-3 ">
           <TooltipProvider disableHoverableContent={true} delayDuration={200}>
             <Tooltip>
               <TooltipTrigger>
