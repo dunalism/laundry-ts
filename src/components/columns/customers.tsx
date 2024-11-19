@@ -9,22 +9,10 @@ import {
 import { PencilLine, Trash2 } from "lucide-react";
 
 export const custcols: ColumnDef<Customers>[] = [
-  {
-    accessorKey: "name",
-    header: "Name",
-  },
-  {
-    accessorKey: "phoneNumber",
-    header: "Phone Number",
-  },
-  {
-    accessorKey: "address",
-    header: "Address",
-  },
-  {
-    accessorKey: "createdAt",
-    header: "Created at",
-  },
+  { accessorKey: "name", header: "Name" },
+  { accessorKey: "phoneNumber", header: "Phone number" },
+  { accessorKey: "address", header: "Address" },
+  { accessorKey: "createdAt", header: "Created at" },
   {
     id: "actions",
     accessorKey: "Actions",

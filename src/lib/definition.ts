@@ -9,7 +9,7 @@ export type UsersData = {
   name: string;
   username: string;
   email: string;
-  password: string;
+  password?: string;
   role: string;
   createdAt: string;
 };
@@ -71,6 +71,10 @@ export type TransctCol = {
   totalTransc: string;
 };
 
-type TranscDateOnly = Pick<Transactions, "transcDate">;
-
-export type TransctColDetail = TranscDetail & TranscDateOnly;
+export type TransctColDetail = {
+  custId?: number;
+  transcDate: string;
+  product: string;
+  amount: number;
+  totalPayment: string | number;
+};

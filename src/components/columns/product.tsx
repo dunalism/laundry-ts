@@ -44,18 +44,9 @@ export const columns: ColumnDef<Products>[] = [
   //   enableSorting: false,
   //   enableHiding: true,
   // },
-  {
-    accessorKey: "name",
-    header: "Name",
-  },
-  {
-    accessorKey: "price",
-    header: "Price",
-  },
-  {
-    accessorKey: "type",
-    header: "Type",
-  },
+  { accessorKey: "name", header: "Name" },
+  { accessorKey: "price", header: "Price" },
+  { accessorKey: "type", header: "Type" },
   {
     id: "actions",
     accessorKey: "Actions",
