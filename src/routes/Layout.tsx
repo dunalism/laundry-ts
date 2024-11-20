@@ -1,6 +1,6 @@
 import { AppSidebar } from "@/components/app-sidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import ThemeToggle from "@/components/theme-toggle";
 import { PanelRight } from "lucide-react";
 
@@ -37,4 +37,5 @@ export default function Layout() {
       </>
     );
   }
+  return <Navigate to="auth/login" />;
 }

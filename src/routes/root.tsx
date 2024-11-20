@@ -7,6 +7,7 @@ import Transactions from "./Transactions";
 import ErrorPage from "./Error";
 import Index from "./Index";
 import Customers from "./Customers";
+import Login from "./Login";
 
 const root = createBrowserRouter(
   [
@@ -23,6 +24,7 @@ const root = createBrowserRouter(
         { path: "transactions", element: <Transactions /> },
       ],
     },
+    { path: "auth/login", element: <Login /> },
   ],
   {
     future: {
