@@ -23,19 +23,35 @@ function Login() {
             Login to your dashboard
           </p>
           <div className="mt-10 flex gap-8 flex-col">
-            <input
-              type="text"
-              className="input input-bordered focus:border-none  hover:border-base-content "
-              placeholder="Username"
-            />
             <label className="input input-bordered focus-within:border-none hover:border-base-content flex items-center gap-2">
-              <User className=" stroke-1 " />
+              <User className=" stroke-1" />
               <input
                 required
                 type="text"
                 className="grow "
                 placeholder="Username"
               />
+            </label>
+
+            <div className="flex flex-col">
+              <label className="label" htmlFor="username">
+                Username
+              </label>
+              <div className="input input-bordered focus-within:border-none hover:border-base-content  flex items-center gap-2">
+                <User className=" stroke-1 h-6 w-6 mr-[-7px] " />
+                <input
+                  placeholder="Username"
+                  className="input w-full focus:outline-none focus:border-none"
+                />
+              </div>
+            </div>
+
+            <label className="form-control w-full max-w-xs">
+              <div className="label">
+                <span className="label-text">Username</span>
+              </div>
+              <User className=" stroke-1 h-6 w-6 mr-[-7px] " />
+              <input className="input input-bordered" />
             </label>
           </div>
         </div>

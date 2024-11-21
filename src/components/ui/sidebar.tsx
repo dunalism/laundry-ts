@@ -5,7 +5,7 @@ import { PanelLeft } from "lucide-react";
 
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
+import { InputShadcn } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -256,30 +256,27 @@ const Sidebar = React.forwardRef<
 );
 Sidebar.displayName = "Sidebar";
 
-const SidebarTrigger = React.forwardRef<
-  React.ElementRef<typeof button>,
-  React.ComponentProps<typeof button>
->(({ className, onClick, icon, ...props }, ref) => {
+const SidebarTrigger = ({
+  className,
+  icon,
+}: {
+  className: string;
+  icon?: React.ReactElement;
+}) => {
   const { toggleSidebar } = useSidebar();
 
   return (
     <button
-      ref={ref}
-      data-sidebar="trigger"
-      variant="outline"
-      size="icon"
       className={cn("h-7 w-7", className)}
-      onClick={(event) => {
-        onClick?.(event);
+      onClick={() => {
         toggleSidebar();
       }}
-      {...props}
     >
       {icon || <PanelLeft />}
       <span className="sr-only">Toggle Sidebar</span>
     </button>
   );
-});
+};
 SidebarTrigger.displayName = "SidebarTrigger";
 
 const SidebarRail = React.forwardRef<
@@ -330,11 +327,11 @@ const SidebarInset = React.forwardRef<
 SidebarInset.displayName = "SidebarInset";
 
 const SidebarInput = React.forwardRef<
-  React.ElementRef<typeof Input>,
-  React.ComponentProps<typeof Input>
+  React.ElementRef<typeof InputShadcn>,
+  React.ComponentProps<typeof InputShadcn>
 >(({ className, ...props }, ref) => {
   return (
-    <Input
+    <InputShadcn
       ref={ref}
       data-sidebar="input"
       className={cn(

@@ -4,7 +4,6 @@ import "./index.css";
 import { RouterProvider } from "react-router-dom";
 import root from "@/routes/root";
 import { ErrorFallback } from "@/routes/Error";
-
 import { ErrorBoundary } from "react-error-boundary";
 
 createRoot(document.getElementById("root")!).render(
