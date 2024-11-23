@@ -1,3 +1,4 @@
+import { ClassValue } from "clsx";
 import React, { ReactElement } from "react";
 
 function StatisticCard({
@@ -8,7 +9,7 @@ function StatisticCard({
 }: {
   title: string;
   total: number;
-  iconColor: string;
+  iconColor: ClassValue;
   Icon: ReactElement;
 }) {
   return (
