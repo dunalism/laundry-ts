@@ -1,8 +1,7 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import axios from "axios";
-import { register } from "./crud";
-import { Register } from "./definition";
+import { login, register } from "./crud";
 import { redirect } from "react-router-dom";
 
 const axiosInstance = axios.create({
@@ -16,11 +15,23 @@ export function cn(...inputs: ClassValue[]) {
 
 export async function registerAction({ request }) {
   const formData = await request.formData();
-  const data = Object.fromEntries(formData) as Register;
+  const data = Object.fromEntries(formData);
   const response = await register(data);
   console.log("response", response);
   if (!response) {
     return redirect("/auth/register");
+  } else {
+    return redirect("/auth/login");
+  }
+}
+
+export async function loginAction({ request }) {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+  const response = await login(data);
+  console.log("response", response);
+  if (!response) {
+    return redirect("/auth/login");
   } else {
     return redirect("/auth/login");
   }

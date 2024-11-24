@@ -2,11 +2,11 @@
 
 import ThemeToggle from "@/components/theme-toggle";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { KeyRound, LogIn, User } from "lucide-react";
 import { InputBordered } from "@/components/ui/inputBordered";
-import { Link } from "react-router-dom";
+import { Form, Link } from "react-router-dom";
 
 const loginSchema = z.object({
   username: z.string().min(1, "Username is required."),
@@ -17,15 +17,14 @@ function Login() {
   type FormValues = z.infer<typeof loginSchema>;
   const {
     register,
-    handleSubmit,
     formState: { errors },
   } = useForm<FormValues>({
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
-    alert(`form submitted: ${data}`);
-  };
+  // const onSubmit: SubmitHandler<FormValues> = (data) => {
+  //   alert(`form submitted: ${data}`);
+  // };
 
   return (
     <main className="grid min-h-screen grid-cols-12 overflow-auto">
@@ -45,10 +44,7 @@ function Login() {
           <p className="mt-2 text-center text-sm text-base-content/70">
             login to your dashboard.
           </p>
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="w-full mx-auto mt-20"
-          >
+          <Form method="post" className="w-full mx-auto mt-20">
             {/* prlineInput */}
 
             <InputBordered
@@ -75,7 +71,7 @@ function Login() {
               <LogIn className="w-5 h-5 mt-[2px]" />
               Login
             </button>
-          </form>
+          </Form>
           <p className="text-center mt-4">
             haven't account?
             <Link
