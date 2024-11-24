@@ -2,7 +2,7 @@
 
 import ThemeToggle from "@/components/theme-toggle";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { KeyRound, Mail, User, UserPlus, UserSquare } from "lucide-react";
 import { InputBordered } from "@/components/ui/inputBordered";
@@ -19,21 +19,20 @@ function Register() {
   type FormValues = z.infer<typeof registerSchema>;
   const {
     register,
-    handleSubmit,
     formState: { errors },
   } = useForm<FormValues>({
     resolver: zodResolver(registerSchema),
-    mode: "onTouched",
+    mode: "onChange",
   });
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
-    const { name, email, username, password } = data;
-    alert(`
-        Full Name: ${name}
-        Email: ${email}
-        Username: ${username}
-        Password: ${password}  `);
-  };
+  //   const onSubmit: SubmitHandler<FormValues> = (data) => {
+  //     const { name, email, username, password } = data;
+  //     alert(`
+  //         Full Name: ${name}
+  //         Email: ${email}
+  //         Username: ${username}
+  //         Password: ${password}  `);
+  //   };
 
   return (
     <main className="grid min-h-screen grid-cols-12 overflow-auto">
@@ -60,6 +59,7 @@ function Register() {
               errors={!!errors.name}
               errorsMessage={errors.name?.message}
               Icon={<UserSquare />}
+              required
             />
 
             <InputBordered
@@ -68,6 +68,7 @@ function Register() {
               errors={!!errors.username}
               errorsMessage={errors.username?.message}
               Icon={<User />}
+              required
             />
 
             <InputBordered
@@ -77,6 +78,7 @@ function Register() {
               errors={!!errors.email}
               errorsMessage={errors.email?.message}
               Icon={<Mail className=" " />}
+              required
             />
 
             <InputBordered
@@ -86,6 +88,7 @@ function Register() {
               errorsMessage={errors.password?.message}
               type="password"
               Icon={<KeyRound />}
+              required
             />
 
             <button

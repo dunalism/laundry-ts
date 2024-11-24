@@ -5,6 +5,7 @@ export type AxiosError = {
   code: string;
   config: object;
   request: object;
+  status: number;
   response: { data: any };
 };
 
