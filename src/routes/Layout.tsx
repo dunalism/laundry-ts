@@ -5,7 +5,7 @@ import ThemeToggle from "@/components/theme-toggle";
 import { PanelRight } from "lucide-react";
 
 export default function Layout() {
-  const isLogged = true;
+  const isLogged = false;
   if (isLogged) {
     return (
       <>

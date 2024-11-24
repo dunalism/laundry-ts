@@ -4,27 +4,35 @@ import ThemeToggle from "@/components/theme-toggle";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
-import { KeyRound, LogIn, User } from "lucide-react";
+import { KeyRound, Mail, User, UserPlus, UserSquare } from "lucide-react";
 import { InputBordered } from "@/components/ui/inputBordered";
-import { Link } from "react-router-dom";
+import { Form, Link } from "react-router-dom";
 
-const loginSchema = z.object({
-  username: z.string().min(1, "Username is required."),
-  password: z.string().min(1, "Password is required."),
+const registerSchema = z.object({
+  name: z.string().min(1, "Full Name is required."),
+  username: z.string().min(3, "Username must be at least 3 characters."),
+  email: z.string().email(`Invalid email! example: "your@mail.com"`),
+  password: z.string().min(8, "Password must be at least 8 characters."),
 });
 
-function Login() {
-  type FormValues = z.infer<typeof loginSchema>;
+function Register() {
+  type FormValues = z.infer<typeof registerSchema>;
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>({
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(registerSchema),
+    mode: "onTouched",
   });
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    alert(`form submitted: ${data}`);
+    const { name, email, username, password } = data;
+    alert(`
+        Full Name: ${name}
+        Email: ${email}
+        Username: ${username}
+        Password: ${password}  `);
   };
 
   return (
@@ -40,16 +48,19 @@ function Login() {
             <ThemeToggle />
           </div>
           <h3 className="mt-12 text-center text-2xl font-semibold lg:mt-28">
-            Welcome Back!
+            Register
           </h3>
           <p className="mt-2 text-center text-sm text-base-content/70">
-            login to your dashboard.
+            Create an account to use the app.
           </p>
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="w-full mx-auto mt-20"
-          >
-            {/* prlineInput */}
+          <Form method="post" className="w-full mx-auto mt-20">
+            <InputBordered
+              label="Full Name"
+              {...register("name")}
+              errors={!!errors.name}
+              errorsMessage={errors.name?.message}
+              Icon={<UserSquare />}
+            />
 
             <InputBordered
               label="Username"
@@ -57,6 +68,15 @@ function Login() {
               errors={!!errors.username}
               errorsMessage={errors.username?.message}
               Icon={<User />}
+            />
+
+            <InputBordered
+              label="Email"
+              type="email"
+              {...register("email")}
+              errors={!!errors.email}
+              errorsMessage={errors.email?.message}
+              Icon={<Mail className=" " />}
             />
 
             <InputBordered
@@ -72,17 +92,17 @@ function Login() {
               type="submit"
               className="btn bg-blue-600 hover:bg-blue-700 text-base-100 text-base dark:bg-violet-600 dark:hover:bg-violet-700 dark:text-white w-full"
             >
-              <LogIn className="w-5 h-5 mt-[2px]" />
-              Login
+              <UserPlus className="w-5 h-5 mt-[2px]" />
+              Register
             </button>
-          </form>
+          </Form>
           <p className="text-center mt-4">
-            haven't account?
+            I have already to
             <Link
               className="ml-1 link-hover text-blue-700 dark:text-violet-500"
-              to="/auth/register"
+              to="/auth/login"
             >
-              Create one!
+              Login
             </Link>{" "}
           </p>
         </div>
@@ -91,4 +111,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;

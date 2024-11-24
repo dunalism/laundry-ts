@@ -9,6 +9,8 @@ import Index from "./Index";
 import Customers from "./Customers";
 import Login from "./Login";
 import Component from "./Component";
+import Register from "./Register";
+import { registerAction } from "@/lib/utils";
 
 const root = createBrowserRouter(
   [
@@ -26,6 +28,12 @@ const root = createBrowserRouter(
       ],
     },
     { path: "auth/login", errorElement: <ErrorPage />, element: <Login /> },
+    {
+      path: "auth/register",
+      errorElement: <ErrorPage />,
+      element: <Register />,
+      action: registerAction,
+    },
     { path: "/component", element: <Component /> },
   ],
   {

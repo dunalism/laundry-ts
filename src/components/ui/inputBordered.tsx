@@ -27,21 +27,22 @@ const InputBordered = React.forwardRef<
         <input
           {...props}
           ref={ref}
+          id={label}
           type={type === "password" ? (isVisible ? "text" : "password") : type}
           className={`bg-base-100 peer p-4 ${
             Icon ? "pl-11" : ""
-          }  block w-full rounded-xl text-sm border border-base-300 dark:border-base-content/50 outline-none hover:border-blue-400 focus:border-blue-600 dark:hover:border-violet-400 dark:focus:border-violet-600 placeholder:text-transparent  focus:pt-6 focus:pb-2 [&:not(:placeholder-shown)]:pt-6 [&:not(:placeholder-shown)]:pb-2 autofill:pt-6 autofill:pb-2 ${
+          }  block w-full rounded-xl text-sm border border-base-300 dark:border-base-content/50 outline-none hover:border-blue-400 focus:border-blue-600 dark:hover:border-violet-400 dark:focus:border-violet-600 placeholder:text-transparent  focus:pt-6 focus:pb-2 [&:not(:placeholder-shown)]:pt-6 [&:not(:placeholder-shown)]:pb-2 autofill:!pt-6 autofill:!pb-2 autofill:!bg-base-100 ${
             errors
               ? "border-red-500 dark:border-red-500 dark:focus:border-red-500 focus:border-red-500 "
               : ""
           } ${className} `}
-          placeholder="********"
+          placeholder={label}
         />
         <label
           htmlFor={label}
           className={`absolute top-0 ${
             Icon ? "start-7 peer-focus:left-7" : ""
-          } p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0]  peer-disabled:opacity-50 peer-disabled:pointer-events-none peer-focus:scale-90 peer-focus:translate-x-0.5 peer-focus:-translate-y-1.5  peer-focus:text-gray-500  peer-[:not(:placeholder-shown)]:scale-90 peer-[:not(:placeholder-shown)]:translate-x-0.5 peer-[:not(:placeholder-shown)]:-translate-y-1.5 ${
+          } p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0]  peer-disabled:opacity-50 peer-disabled:pointer-events-none peer-focus:scale-90 peer-focus:translate-x-0.5 peer-focus:-translate-y-1.5  peer-focus:text-gray-500 peer-[:not(:placeholder-shown)]:text-gray-500 peer-[:not(:placeholder-shown)]:scale-90 peer-[:not(:placeholder-shown)]:translate-x-0.5 peer-[:not(:placeholder-shown)]:-translate-y-1.5 ${
             errors ? "peer-focus:text-red-500 text-red-500" : ""
           } `}
         >
@@ -55,9 +56,9 @@ const InputBordered = React.forwardRef<
             aria-label="toggle password visibility"
           >
             {isVisible ? (
-              <Eye className="absolute h-7 w-7 right-3 top-[13px]" />
+              <Eye className="absolute stroke-1 h-7 w-7 right-3 top-[13px]" />
             ) : (
-              <EyeClosed className="absolute h-7 w-7 right-3 top-[13px]" />
+              <EyeClosed className="absolute stroke-1 h-7 w-7 right-3 top-[13px]" />
             )}
           </button>
         )}

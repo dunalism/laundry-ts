@@ -1,3 +1,13 @@
+export type AxiosError = {
+  statusText: string;
+  name: string;
+  message: string;
+  code: string;
+  config: object;
+  request: object;
+  response: { data: any };
+};
+
 export type Users = {
   name: string;
   role: string;
@@ -12,6 +22,13 @@ export type UsersData = {
   password?: string;
   role: string;
   createdAt: string;
+};
+
+export type Register = {
+  name: string;
+  username: string;
+  email: string;
+  password: string;
 };
 
 export type Admin = {

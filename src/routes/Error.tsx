@@ -1,3 +1,4 @@
+import { AxiosError } from "@/lib/definition";
 import { useEffect } from "react";
 import { useRouteError } from "react-router-dom";
 import { themeChange } from "theme-change";
@@ -19,8 +20,8 @@ export default function ErrorPage() {
     themeChange(false);
     // 👆 false parameter is required for react project
   }, []);
-  const error = useRouteError();
-  console.error(error);
+  const error = useRouteError() as AxiosError;
+  console.error(error.response?.data);
 
   return (
     <main className="bg-base-100 flex flex-col items-center h-screen justify-center  w-full">
