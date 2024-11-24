@@ -33,6 +33,6 @@ export async function loginAction({ request }) {
   if (!response) {
     return redirect("/auth/login");
   } else {
-    return redirect("/auth/login");
+    return redirect("/dashboard");
   }
 }

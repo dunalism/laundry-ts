@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { KeyRound, LogIn, User } from "lucide-react";
 import { InputBordered } from "@/components/ui/inputBordered";
-import { Form, Link } from "react-router-dom";
+import { Form, Link, useNavigation } from "react-router-dom";
 
 const loginSchema = z.object({
   username: z.string().min(1, "Username is required."),
@@ -14,6 +14,9 @@ const loginSchema = z.object({
 });
 
 function Login() {
+  const navigation = useNavigation();
+  const submitting: boolean = navigation.state === "submitting";
+
   type FormValues = z.infer<typeof loginSchema>;
   const {
     register,
@@ -53,6 +56,7 @@ function Login() {
               errors={!!errors.username}
               errorsMessage={errors.username?.message}
               Icon={<User />}
+              required
             />
 
             <InputBordered
@@ -62,12 +66,16 @@ function Login() {
               errorsMessage={errors.password?.message}
               type="password"
               Icon={<KeyRound />}
+              required
             />
 
             <button
               type="submit"
               className="btn bg-blue-600 hover:bg-blue-700 text-base-100 text-base dark:bg-violet-600 dark:hover:bg-violet-700 dark:text-white w-full"
             >
+              <div aria-hidden hidden={!submitting}>
+                <span className="loading loading-spinner"></span>
+              </div>
               <LogIn className="w-5 h-5 mt-[2px]" />
               Login
             </button>

@@ -1,7 +1,9 @@
 import { AxiosError } from "@/lib/definition";
 import { useEffect } from "react";
 import { useRouteError } from "react-router-dom";
+// import { toast } from "react-toastify";
 import { themeChange } from "theme-change";
+import Login from "./Login";
 
 export function ErrorFallback({ error }: { error: Error }) {
   return (
@@ -21,14 +23,24 @@ export default function ErrorPage() {
     // 👆 false parameter is required for react project
   }, []);
   const error = useRouteError() as AxiosError;
-  console.error(error.response?.data);
+
+  // const errorsMessage = error.response.data.error;
+  // const errorServer = error.status === 500;
+  // if (errorServer) toast.error("InternalServerError");
+  console.log("error:", error);
+
+  if (error) {
+    return <Login />;
+  }
 
   return (
     <main className="bg-base-100 flex flex-col items-center h-screen justify-center  w-full">
       <h1 className="">Oops!</h1>
       <p>Sorry, an unexpected error has occurred.</p>
       <p>
-        <i>{error.statusText || error.message}</i>
+        <i>
+          {(error as AxiosError).statusText || (error as AxiosError).message}
+        </i>
       </p>
     </main>
   );

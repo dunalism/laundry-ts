@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { KeyRound, Mail, User, UserPlus, UserSquare } from "lucide-react";
 import { InputBordered } from "@/components/ui/inputBordered";
-import { Form, Link } from "react-router-dom";
+import { Form, Link, useNavigation } from "react-router-dom";
 
 const registerSchema = z.object({
   name: z.string().min(1, "Full Name is required."),
@@ -16,6 +16,9 @@ const registerSchema = z.object({
 });
 
 function Register() {
+  const navigation = useNavigation();
+  const submitting: boolean = navigation.state === "submitting";
+
   type FormValues = z.infer<typeof registerSchema>;
   const {
     register,
@@ -95,6 +98,9 @@ function Register() {
               type="submit"
               className="btn bg-blue-600 hover:bg-blue-700 text-base-100 text-base dark:bg-violet-600 dark:hover:bg-violet-700 dark:text-white w-full"
             >
+              <div aria-hidden hidden={!submitting}>
+                <span className="loading loading-spinner"></span>
+              </div>
               <UserPlus className="w-5 h-5 mt-[2px]" />
               Register
             </button>
