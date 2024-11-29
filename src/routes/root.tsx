@@ -11,12 +11,17 @@ import Login from "./Login";
 import Component from "./Component";
 import Register from "./Register";
 import { loginAction, registerAction } from "@/lib/utils";
+import { AuthProvider } from "@/lib/AuthProvider";
 
 const root = createBrowserRouter(
   [
     {
       path: "/",
-      element: <Layout />,
+      element: (
+        <AuthProvider>
+          <Layout />
+        </AuthProvider>
+      ),
       errorElement: <ErrorPage />,
       children: [
         { index: true, element: <Index /> },
@@ -30,13 +35,21 @@ const root = createBrowserRouter(
     {
       path: "auth/login",
       errorElement: <ErrorPage />,
-      element: <Login />,
+      element: (
+        <AuthProvider>
+          <Login />
+        </AuthProvider>
+      ),
       action: loginAction,
     },
     {
       path: "auth/register",
       errorElement: <ErrorPage />,
-      element: <Register />,
+      element: (
+        <AuthProvider>
+          <Register />
+        </AuthProvider>
+      ),
       action: registerAction,
     },
     { path: "/component", element: <Component /> },

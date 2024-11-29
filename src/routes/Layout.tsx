@@ -4,13 +4,12 @@ import { Navigate, Outlet } from "react-router-dom";
 import ThemeToggle from "@/components/theme-toggle";
 import { PanelRight } from "lucide-react";
 import { LoginResponse } from "@/lib/definition";
+import { useAuth } from "@/lib/AuthProvider";
 
 export default function Layout() {
-  const response: LoginResponse = JSON.parse(
-    localStorage.getItem("user") as string
-  );
+  const { auth } = useAuth();
 
-  const isLogged = response?.auth;
+  const isLogged = auth;
   if (isLogged) {
     return (
       <>

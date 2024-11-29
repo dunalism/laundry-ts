@@ -103,7 +103,7 @@ export function DataTable<TData extends { id: number }, TValue>({
         </div>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <button className="ml-auto text-neutral/70 font-medium theme-sunset:text-base-content/60 btn btn-sm my-auto mr-4  theme-luxury:text-base-content/60 theme-aqua:text-base-content/60">
+            <button className="ml-auto text-neutral/70 font-medium theme-sunset:text-base-content/60 btn btn-sm my-auto mr-4  theme-luxury:text-base-content/60 ">
               <Settings2 className="h-4 w-4 mt-[3px]" /> Columns
             </button>
           </DropdownMenuTrigger>

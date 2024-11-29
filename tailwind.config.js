@@ -13,10 +13,10 @@ export default {
       addVariant("theme-sunset", '[data-theme="sunset"] &');
       addVariant("theme-luxury", '[data-theme="luxury"] &');
       addVariant("theme-lemonade", '[data-theme="lemonade"] &');
-      addVariant("theme-aqua", '[data-theme="aqua"] &');
+      addVariant("theme-nord", '[data-theme="nord"] &');
     },
   ],
   daisyui: {
-    themes: ["garden", "sunset", "cyberpunk", "luxury", "lemonade", "aqua"],
+    themes: ["garden", "sunset", "cyberpunk", "luxury", "lemonade", "nord"],
   },
 };

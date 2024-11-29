@@ -1,3 +1,4 @@
+import ConfirmLogout from "@/components/alert-confirm/confirm-logout";
 import { columns } from "@/components/columns/product";
 import { DataTable } from "@/components/data-table";
 import { useSidebar } from "@/components/ui/sidebar";
@@ -94,6 +95,7 @@ function ProductsPage() {
       >
         <div className="card-body">
           <DataTable columns={columns} data={products} searchBy="name" />
+          <ConfirmLogout />
         </div>
       </div>
     </div>

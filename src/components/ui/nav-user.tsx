@@ -31,6 +31,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { useTheme } from "@/lib/ThemeProvider";
+import { useAuth } from "@/lib/AuthProvider";
 
 export function NavUser({
   user,
@@ -44,17 +45,21 @@ export function NavUser({
   const { isMobile } = useSidebar();
 
   const { theme, setTheme } = useTheme(); // Mengambil state global
+  const { logOut } = useAuth();
 
   const isLuxury = theme === "luxury";
-  const isAqua = theme === "aqua";
+  const isNord = theme === "nord";
   const isLemonade = theme === "lemonade";
 
-  // function handleThemeChange(theme: string) {
-  //   // Atur atribut data-theme pada elemen root
-  //   document.documentElement.setAttribute("data-theme", theme);
-  //   // Simpan tema ke localStorage agar tetap konsisten setelah refresh
-  //   localStorage.setItem("theme", theme);
-  // }
+  // const confirmLogOut = () => {
+  //   const modal = document.getElementById("logout") as HTMLElement;
+  //   modal.click();
+  // };
+
+  // const handleLogOut = () => {
+  //   localStorage.removeItem("user");
+  //   navigate("auth/login");
+  // };
 
   return (
     <SidebarMenu>
@@ -123,10 +128,10 @@ export function NavUser({
                       <span>Lemonade</span>
                     </DropdownMenuCheckboxItem>
                     <DropdownMenuCheckboxItem
-                      checked={isAqua}
-                      onCheckedChange={() => setTheme("aqua")}
+                      checked={isNord}
+                      onCheckedChange={() => setTheme("nord")}
                     >
-                      <span>Aqua</span>
+                      <span>Nord</span>
                     </DropdownMenuCheckboxItem>
                   </DropdownMenuSubContent>
                 </DropdownMenuPortal>
@@ -141,7 +146,7 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={logOut}>
               <LogOut />
               Log out
             </DropdownMenuItem>

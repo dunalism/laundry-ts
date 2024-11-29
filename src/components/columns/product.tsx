@@ -59,7 +59,7 @@ export const columns: ColumnDef<Products>[] = [
               <TooltipTrigger>
                 <PencilLineIcon
                   onClick={() => console.log(products.name)}
-                  className="text-blue-500 "
+                  className="text-blue-500 dark:text-violet-500 theme-luxury:text-violet-500 "
                 />
               </TooltipTrigger>
               <TooltipContent>Edit</TooltipContent>
