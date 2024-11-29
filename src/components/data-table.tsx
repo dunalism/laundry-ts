@@ -103,7 +103,7 @@ export function DataTable<TData extends { id: number }, TValue>({
         </div>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <button className="ml-auto text-neutral/70 font-medium theme-sunset:text-base-content/60  btn btn-sm my-auto mr-4">
+            <button className="ml-auto text-neutral/70 font-medium theme-sunset:text-base-content/60 btn btn-sm my-auto mr-4  theme-luxury:text-base-content/60 theme-aqua:text-base-content/60">
               <Settings2 className="h-4 w-4 mt-[3px]" /> Columns
             </button>
           </DropdownMenuTrigger>
@@ -172,7 +172,7 @@ export function DataTable<TData extends { id: number }, TValue>({
           )}
         </TableBody>
       </Table>
-      <div className="flex-1 text-sm text-neutral-500">
+      <div className="flex-1 hidden text-sm text-neutral-500">
         {table.getFilteredSelectedRowModel().rows.length} of{" "}
         {table.getFilteredRowModel().rows.length} row(s) selected.
       </div>

@@ -59,7 +59,7 @@ export const columns: ColumnDef<Products>[] = [
               <TooltipTrigger>
                 <PencilLineIcon
                   onClick={() => console.log(products.name)}
-                  className="text-info "
+                  className="text-blue-500 "
                 />
               </TooltipTrigger>
               <TooltipContent>Edit</TooltipContent>
@@ -69,7 +69,7 @@ export const columns: ColumnDef<Products>[] = [
           <TooltipProvider disableHoverableContent={true} delayDuration={200}>
             <Tooltip>
               <TooltipTrigger>
-                <Trash2 className="text-error " />
+                <Trash2 className="text-red-500 " />
               </TooltipTrigger>
               <TooltipContent>Delete</TooltipContent>
             </Tooltip>

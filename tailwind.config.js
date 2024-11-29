@@ -11,9 +11,12 @@ export default {
     function ({ addVariant }) {
       addVariant("theme-cyberpunk", '[data-theme="cyberpunk"] &');
       addVariant("theme-sunset", '[data-theme="sunset"] &');
+      addVariant("theme-luxury", '[data-theme="luxury"] &');
+      addVariant("theme-lemonade", '[data-theme="lemonade"] &');
+      addVariant("theme-aqua", '[data-theme="aqua"] &');
     },
   ],
   daisyui: {
-    themes: ["garden", "sunset", "cyberpunk"],
+    themes: ["garden", "sunset", "cyberpunk", "luxury", "lemonade", "aqua"],
   },
 };

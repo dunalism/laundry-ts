@@ -7,19 +7,14 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
-import { Users } from "@/lib/definition";
+import { LoginResponse, Users } from "@/lib/definition";
 import { NavUser } from "./ui/nav-user";
-
-const user: Users = {
-  name: "Hamdika",
-  role: "owner",
-  avatar:
-    "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=dunalism&size=200",
-};
 
 // Menu items.
 const items = [
@@ -37,7 +32,18 @@ export function AppSidebar({
   placement: "left" | "right";
   classname?: string | undefined;
 }) {
+  const response: LoginResponse = JSON.parse(
+    localStorage.getItem("user") as string
+  );
   const location = useLocation().pathname;
+  const { state } = useSidebar();
+  const collapsed = state === "collapsed";
+
+  const user: Users = {
+    name: response?.data.username,
+    role: response?.data.role,
+    avatar: `https://api.dicebear.com/9.x/notionists-neutral/svg?seed=${response?.data.username}&size=200`,
+  };
 
   return (
     <Sidebar
@@ -46,9 +52,23 @@ export function AppSidebar({
       collapsible="icon"
     >
       <SidebarContent>
+        {collapsed && (
+          <SidebarHeader className="-mb-12 ">
+            <img
+              src="/favicon.ico"
+              alt="laundryLogo"
+              className="rounded-md h-8 w-8  "
+            />
+          </SidebarHeader>
+        )}
         <SidebarGroup>
-          <SidebarGroupLabel className="prose mb-10">
-            <h1 className="ml-5 mt-2">Laundry</h1>
+          <SidebarGroupLabel className="prose mb-10 ">
+            <img
+              src="/favicon.ico"
+              alt="laundryLogo"
+              className="mt-12 ml-2 rounded-md"
+            />
+            <h1 className="ml-4 mt-2">Laundry</h1>
           </SidebarGroupLabel>
           <SidebarGroupContent className="">
             <SidebarMenu>

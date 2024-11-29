@@ -24,6 +24,7 @@ const SheetOverlay = React.forwardRef<
     )}
     {...props}
     ref={ref}
+    aria-describedby="sidebar"
   />
 ));
 SheetOverlay.displayName = SheetPrimitive.Overlay.displayName;
@@ -61,6 +62,7 @@ const SheetContent = React.forwardRef<
       ref={ref}
       className={cn(sheetVariants({ side }), className)}
       {...props}
+      aria-describedby="sidebar"
     >
       {children}
       <SheetPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
@@ -82,6 +84,7 @@ const SheetHeader = ({
       className
     )}
     {...props}
+    aria-describedby="sidebar"
   />
 );
 SheetHeader.displayName = "SheetHeader";
@@ -96,6 +99,7 @@ const SheetFooter = ({
       className
     )}
     {...props}
+    aria-describedby="sidebar"
   />
 );
 SheetFooter.displayName = "SheetFooter";
@@ -108,6 +112,7 @@ const SheetTitle = React.forwardRef<
     ref={ref}
     className={cn("text-lg font-semibold text-foreground", className)}
     {...props}
+    aria-describedby="sidebar"
   />
 ));
 SheetTitle.displayName = SheetPrimitive.Title.displayName;
@@ -120,6 +125,7 @@ const SheetDescription = React.forwardRef<
     ref={ref}
     className={cn("text-sm text-muted-foreground", className)}
     {...props}
+    aria-describedby="sidebar"
   />
 ));
 SheetDescription.displayName = SheetPrimitive.Description.displayName;

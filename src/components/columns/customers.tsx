@@ -25,7 +25,7 @@ export const custcols: ColumnDef<Customers>[] = [
               <TooltipTrigger>
                 <PencilLine
                   onClick={() => console.log(customers.name)}
-                  className="text-info"
+                  className="text-blue-500"
                 />
               </TooltipTrigger>
               <TooltipContent>Edit</TooltipContent>
@@ -37,7 +37,7 @@ export const custcols: ColumnDef<Customers>[] = [
               <TooltipTrigger>
                 <Trash2
                   onClick={() => console.log(customers.name)}
-                  className="text-error"
+                  className="text-red-500"
                 />
               </TooltipTrigger>
               <TooltipContent>Delete</TooltipContent>

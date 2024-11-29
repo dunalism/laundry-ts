@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useRouteError } from "react-router-dom";
 // import { toast } from "react-toastify";
 import { themeChange } from "theme-change";
-import Login from "./Login";
 
 export function ErrorFallback({ error }: { error: Error }) {
   return (
@@ -28,10 +27,6 @@ export default function ErrorPage() {
   // const errorServer = error.status === 500;
   // if (errorServer) toast.error("InternalServerError");
   console.log("error:", error);
-
-  if (error) {
-    return <Login />;
-  }
 
   return (
     <main className="bg-base-100 flex flex-col items-center h-screen justify-center  w-full">

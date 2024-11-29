@@ -3,9 +3,14 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Navigate, Outlet } from "react-router-dom";
 import ThemeToggle from "@/components/theme-toggle";
 import { PanelRight } from "lucide-react";
+import { LoginResponse } from "@/lib/definition";
 
 export default function Layout() {
-  const isLogged = true;
+  const response: LoginResponse = JSON.parse(
+    localStorage.getItem("user") as string
+  );
+
+  const isLogged = response?.auth;
   if (isLogged) {
     return (
       <>

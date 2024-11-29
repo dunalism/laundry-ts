@@ -4,7 +4,7 @@ import Dashboard from "./Dashboard";
 import Users from "./Users";
 import Products from "./Products";
 import Transactions from "./Transactions";
-import ErrorPage from "./Error";
+import ErrorPage from "@/routes/Error";
 import Index from "./Index";
 import Customers from "./Customers";
 import Login from "./Login";

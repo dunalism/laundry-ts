@@ -1,20 +1,12 @@
-import { useState, useEffect } from "react";
+import { useTheme } from "@/lib/ThemeProvider";
+import React from "react";
 
-function ThemeToggle({ className }: { className?: string | undefined }) {
-  // Ambil tema yang disimpan di localStorage atau default ke "garden"
-  const storedTheme = localStorage.getItem("theme") || "garden";
+function ThemeToggle({ className }: { className?: string }) {
+  // Ambil tema dan fungsi setTheme dari ThemeContext
+  const { theme, setTheme } = useTheme();
 
-  const [theme, setTheme] = useState(storedTheme);
-
-  // Set the theme on initial render or when theme changes
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    // Simpan tema yang dipilih ke localStorage
-    localStorage.setItem("theme", theme);
-  }, [theme]);
-
-  // Toggle between garden and sunset
-  const handleThemeChange = (e) => {
+  // Fungsi untuk menangani perubahan tema
+  const handleThemeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTheme(e.target.checked ? "sunset" : "garden");
   };
 

@@ -29,6 +29,7 @@ export async function loginAction({ request }) {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
   const response = await login(data);
+  localStorage.setItem("user", JSON.stringify(response));
   console.log("response", response);
   if (!response) {
     return redirect("/auth/login");

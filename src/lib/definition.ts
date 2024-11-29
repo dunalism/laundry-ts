@@ -25,6 +25,12 @@ export type UsersData = {
   createdAt: string;
 };
 
+export type LoginResponse = {
+  auth: boolean;
+  token: string;
+  data: Omit<UsersData, "id">;
+};
+
 export type Register = {
   name: string;
   username: string;
