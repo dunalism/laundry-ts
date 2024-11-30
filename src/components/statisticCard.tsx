@@ -14,7 +14,7 @@ function StatisticCard({
 }) {
   return (
     <div>
-      <main className="card bg-base-100 w-72 shadow-lg">
+      <main className="card bg-base-100 w-72 md:w-60 min-[885px]:w-72  shadow-lg">
         <section className="card-body">
           <div className="flex box-border justify-between">
             <div className="card-title mb-3 mt-[-6px]">{title}</div>

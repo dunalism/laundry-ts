@@ -3,9 +3,21 @@ import { twMerge } from "tailwind-merge";
 import axios from "axios";
 import { login, register } from "./crud";
 import { redirect } from "react-router-dom";
+import { LoginResponse } from "./definition";
+
+const user = localStorage.getItem("user") as string;
+
+const response: LoginResponse = JSON.parse(
+  user !== "undefined" ? user : `{"token":false}`
+);
+
+const token = response?.token;
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
 });
 export default axiosInstance;
 

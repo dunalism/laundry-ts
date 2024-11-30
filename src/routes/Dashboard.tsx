@@ -12,7 +12,7 @@ import {
 function Dashboard() {
   const { state } = useSidebar();
   return (
-    <main className=" flex p-7 ml-3 flex-col box-border ">
+    <main className=" flex p-7 ml-3 flex-col  box-border ">
       <section className="prose mb-5 mt-[-1rem] ">
         <h2 data-state={state} className="data-[state=collapsed]:ml-[75px] ">
           Dashboard
@@ -20,7 +20,7 @@ function Dashboard() {
       </section>
       <section
         data-state={state}
-        className="grid grid-cols-3 gap-4 data-[state=collapsed]:ml-[70px] "
+        className="grid sm:grid-cols-2 min-[1177px]:grid-cols-3 gap-4 data-[state=collapsed]:ml-[70px] "
       >
         <StatisticCard
           Icon={<Users />}

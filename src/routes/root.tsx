@@ -25,15 +25,15 @@ const root = createBrowserRouter(
       errorElement: <ErrorPage />,
       children: [
         { index: true, element: <Index /> },
-        { path: "dashboard", element: <Dashboard /> },
-        { path: "users", element: <Users /> },
-        { path: "customers", element: <Customers /> },
-        { path: "products", element: <Products /> },
-        { path: "transactions", element: <Transactions /> },
+        { path: "/dashboard", element: <Dashboard /> },
+        { path: "/users", element: <Users /> },
+        { path: "/customers", element: <Customers /> },
+        { path: "/products", element: <Products /> },
+        { path: "/transactions", element: <Transactions /> },
       ],
     },
     {
-      path: "auth/login",
+      path: "/auth/login",
       errorElement: <ErrorPage />,
       element: (
         <AuthProvider>
@@ -43,7 +43,7 @@ const root = createBrowserRouter(
       action: loginAction,
     },
     {
-      path: "auth/register",
+      path: "/auth/register",
       errorElement: <ErrorPage />,
       element: (
         <AuthProvider>

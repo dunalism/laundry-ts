@@ -6,6 +6,10 @@ import { useNavigate } from "react-router-dom";
 const AuthContext = createContext({
   auth: false,
   logOut: () => {},
+  products: [],
+  users: [],
+  transactions: [],
+  customers: [],
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -17,14 +21,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     user !== "undefined" ? user : `{"auth":false}`
   );
 
-  const auth = response ? response?.auth : false;
-
-  console.log("response", response);
-
-  console.log("auth", auth);
+  const auth = response ? response.auth : false;
 
   const handleLogOut = () => {
     localStorage.removeItem("user");
+    document.body.style.pointerEvents = "auto";
     navigate("/auth/login");
   };
 
