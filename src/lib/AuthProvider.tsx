@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext } from "react";
 import { LoginResponse } from "./definition";
 import { useNavigate } from "react-router-dom";
 
@@ -11,15 +11,21 @@ const AuthContext = createContext({
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const navigate = useNavigate();
 
+  const user = localStorage.getItem("user") as string;
+
   const response: LoginResponse = JSON.parse(
-    localStorage.getItem("user") as string
+    user !== "undefined" ? user : `{"auth":false}`
   );
 
-  const auth = response?.auth;
+  const auth = response ? response?.auth : false;
+
+  console.log("response", response);
+
+  console.log("auth", auth);
 
   const handleLogOut = () => {
     localStorage.removeItem("user");
-    navigate("auth/login");
+    navigate("/auth/login");
   };
 
   return (

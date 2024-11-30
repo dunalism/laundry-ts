@@ -20,6 +20,8 @@ function Login() {
   const { auth } = useAuth();
   const isLogout = !auth;
 
+  console.log("auth", auth);
+
   type FormValues = z.infer<typeof loginSchema>;
   const {
     register,

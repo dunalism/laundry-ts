@@ -2,12 +2,13 @@
 
 import ThemeToggle from "@/components/theme-toggle";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { KeyRound, Mail, User, UserPlus, UserSquare } from "lucide-react";
 import { InputBordered } from "@/components/ui/inputBordered";
-import { Form, Link, Navigate, useNavigation } from "react-router-dom";
+import { Link, Navigate, useNavigate, useNavigation } from "react-router-dom";
 import { useAuth } from "@/lib/AuthProvider";
+import { register as signUp } from "@/lib/crud";
 
 const registerSchema = z.object({
   name: z.string().min(1, "Full Name is required."),
@@ -21,24 +22,26 @@ function Register() {
   const submitting: boolean = navigation.state === "submitting";
   const { auth } = useAuth();
   const isLogout = !auth;
+  const navigate = useNavigate();
 
   type FormValues = z.infer<typeof registerSchema>;
   const {
     register,
+    handleSubmit,
     formState: { errors },
   } = useForm<FormValues>({
     resolver: zodResolver(registerSchema),
-    mode: "onChange",
+    mode: "onTouched",
   });
 
-  //   const onSubmit: SubmitHandler<FormValues> = (data) => {
-  //     const { name, email, username, password } = data;
-  //     alert(`
-  //         Full Name: ${name}
-  //         Email: ${email}
-  //         Username: ${username}
-  //         Password: ${password}  `);
-  //   };
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    const response = await signUp(data);
+    if (response) {
+      navigate("/auth/login");
+    } else {
+      navigate("/auth/register");
+    }
+  };
 
   if (isLogout) {
     return (
@@ -59,7 +62,10 @@ function Register() {
             <p className="mt-2 text-center text-sm text-base-content/70">
               Create an account to use the app.
             </p>
-            <Form method="post" className="w-full mx-auto mt-20">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="w-full mx-auto mt-20"
+            >
               <InputBordered
                 label="Full Name"
                 {...register("name")}
@@ -108,7 +114,7 @@ function Register() {
                 <UserPlus className="w-5 h-5 mt-[2px]" />
                 Register
               </button>
-            </Form>
+            </form>
             <p className="text-center mt-4">
               I have already to
               <Link

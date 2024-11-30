@@ -32,6 +32,7 @@ import {
 } from "@/components/ui/sidebar";
 import { useTheme } from "@/lib/ThemeProvider";
 import { useAuth } from "@/lib/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 export function NavUser({
   user,
@@ -46,6 +47,13 @@ export function NavUser({
 
   const { theme, setTheme } = useTheme(); // Mengambil state global
   const { logOut } = useAuth();
+
+  const navigate = useNavigate();
+
+  const handleLogOut = () => {
+    localStorage.removeItem("user");
+    navigate("/auth/login");
+  };
 
   const isLuxury = theme === "luxury";
   const isNord = theme === "nord";
@@ -146,7 +154,12 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={logOut}>
+            <DropdownMenuItem
+              onClick={() => {
+                localStorage.removeItem("user");
+                navigate("/auth/login");
+              }}
+            >
               <LogOut />
               Log out
             </DropdownMenuItem>

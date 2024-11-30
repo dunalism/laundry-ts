@@ -1,4 +1,11 @@
-import { Receipt, User, User2, Package, LayoutDashboard } from "lucide-react";
+import {
+  Receipt,
+  User,
+  User2,
+  Package,
+  LayoutDashboard,
+  Indent,
+} from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import {
   Sidebar,
@@ -23,6 +30,7 @@ const items = [
   { title: "Products", url: "products", icon: Package },
   { title: "Customers", url: "customers", icon: User2 },
   { title: "Transactions", url: "transactions", icon: Receipt },
+  { title: "index", url: "/", icon: Indent },
 ];
 
 export function AppSidebar({

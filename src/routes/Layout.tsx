@@ -3,7 +3,6 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Navigate, Outlet } from "react-router-dom";
 import ThemeToggle from "@/components/theme-toggle";
 import { PanelRight } from "lucide-react";
-import { LoginResponse } from "@/lib/definition";
 import { useAuth } from "@/lib/AuthProvider";
 
 export default function Layout() {
@@ -15,7 +14,7 @@ export default function Layout() {
       <>
         <SidebarProvider className="flex max-md:hidden ">
           <AppSidebar classname="" placement="left" />
-          <div className="relative box-border grow peer peer-data-[state=collapsed]:data-[id=table]:bg-violet-500 bg-base-200">
+          <div className="relative box-border grow peer  bg-base-200">
             <nav className="mb-3  p-2 drop-shadow-xl bg-base-200   flex justify-between">
               <SidebarTrigger className="mt-1 ml-2" />
               <ThemeToggle className="mt-[-2px] mr-1 " />
@@ -28,12 +27,12 @@ export default function Layout() {
 
         <SidebarProvider className="flex md:hidden ">
           <AppSidebar classname="" placement="right" />
-          <div className=" box-border grow bg-base-200">
+          <div className="max-[360px]:max-w-[360px] max-[376px]:max-w-[376px] box-border grow bg-base-200">
             <nav className="mb-3  p-2 drop-shadow-xl bg-base-200  flex justify-between">
               <ThemeToggle className="mt-[-2px] mr-1 " />
               <SidebarTrigger icon={<PanelRight />} className="mt-1 ml-2" />
             </nav>
-            <div className="px-1 flex-1 min-h-[534px] rounded-md">
+            <div className="box-border peer flex-1 min-h-[522px] rounded-md">
               <Outlet />
             </div>
           </div>

@@ -10,7 +10,7 @@ import Customers from "./Customers";
 import Login from "./Login";
 import Component from "./Component";
 import Register from "./Register";
-import { loginAction, registerAction } from "@/lib/utils";
+import { loginAction } from "@/lib/utils";
 import { AuthProvider } from "@/lib/AuthProvider";
 
 const root = createBrowserRouter(
@@ -50,7 +50,6 @@ const root = createBrowserRouter(
           <Register />
         </AuthProvider>
       ),
-      action: registerAction,
     },
     { path: "/component", element: <Component /> },
   ],
