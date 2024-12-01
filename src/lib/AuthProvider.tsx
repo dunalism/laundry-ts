@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { createContext, useContext, useState } from "react";
 import {
@@ -20,6 +21,7 @@ export type Auth = {
   setCustomers: React.Dispatch<any>;
   setTransactions: React.Dispatch<any>;
   setTotalTransc: React.Dispatch<any>;
+  setToken: React.Dispatch<any>;
 };
 
 export type Datas = {
@@ -28,9 +30,10 @@ export type Datas = {
   transactions: Transactions[];
   totalTransc: TransctCol[];
   customers: Customers[];
+  token: string;
 };
 
-const AuthContext = createContext<Auth & Datas>({
+export const AuthContext = createContext<Auth & Datas>({
   setDatas: () => {},
   auth: false,
   logOut: () => {},
@@ -44,6 +47,8 @@ const AuthContext = createContext<Auth & Datas>({
   setTransactions: () => {},
   totalTransc: [],
   setTotalTransc: () => {},
+  token: "",
+  setToken: () => {},
 });
 
 type Row = {
@@ -63,7 +68,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     customers: [],
     transactions: [],
     totalTransc: [],
+    token: "",
   };
+
+  const [token, setToken] = useState(datas?.token);
   const [totalTransc, setTotalTransc] = useState<TransctCol[]>([]);
   const [products, setProducts] = useState(datas?.products);
   const [users, setUsers] = useState(datas?.users);
@@ -87,6 +95,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setCustomers([]);
     setTransactions([]);
     setTotalTransc([]);
+    setToken("");
   };
 
   const setDatas = (datas: Datas) => {
@@ -147,6 +156,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setDatas: setDatas,
         totalTransc,
         setTotalTransc: setTotalTransc,
+        token,
+        setToken: setToken,
       }}
     >
       {children}

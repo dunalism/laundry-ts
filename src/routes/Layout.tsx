@@ -14,12 +14,14 @@ import {
 import { LoginResponse } from "@/lib/definition";
 
 export default function Layout() {
-  const { auth, setDatas } = useAuth();
+  const { auth, setDatas, setToken } = useAuth();
   const datas: Datas = {
     products: [],
     users: [],
     customers: [],
     transactions: [],
+    totalTransc: [],
+    token: "",
   };
 
   useEffect(() => {
@@ -37,6 +39,7 @@ export default function Layout() {
       datas.transactions = await getTransactions(token);
 
       setDatas(datas);
+      setToken(token);
     }
 
     if (auth) {

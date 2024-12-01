@@ -1,5 +1,5 @@
 import axios from "@/lib/utils";
-import { AxiosError } from "./definition";
+import { AxiosError, Product } from "./definition";
 import { toast } from "react-toastify";
 
 export const register = async (data) => {
@@ -89,4 +89,13 @@ export const getTransactions = async (token: string) => {
   } catch (error) {
     console.log("error", error);
   }
+};
+
+export const addProduct = async (data: Omit<Product, "id">, token: string) => {
+  const response = await axios.post("/products", data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data.data;
 };

@@ -35,12 +35,14 @@ interface DataTableProps<TData extends { id: number }, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   searchBy: string;
+  tableOf: string;
 }
 
 export function DataTable<TData extends { id: number }, TValue>({
   columns,
   data,
   searchBy,
+  tableOf,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -85,7 +87,7 @@ export function DataTable<TData extends { id: number }, TValue>({
 
   return (
     <div className="rounded-md box-border">
-      <div className="flex">
+      <div className="flex ">
         <div className="flex gap-4 items-center py-4">
           <input
             placeholder="Search"
@@ -103,7 +105,7 @@ export function DataTable<TData extends { id: number }, TValue>({
         </div>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <button className="ml-auto text-neutral/70 font-medium theme-sunset:text-base-content/60 btn btn-sm my-auto mr-4  theme-luxury:text-base-content/60 ">
+            <button className="ml-auto hidden text-neutral/70 font-medium theme-sunset:text-base-content/60 btn btn-sm my-auto mr-4  theme-luxury:text-base-content/60 ">
               <Settings2 className="h-4 w-4 mt-[3px]" /> Columns
             </button>
           </DropdownMenuTrigger>
@@ -127,6 +129,15 @@ export function DataTable<TData extends { id: number }, TValue>({
               })}
           </DropdownMenuContent>
         </DropdownMenu>
+        <button
+          onClick={() => {
+            const logout = document.getElementById("dialogex");
+            logout?.click();
+          }}
+          className="btn bg-blue-600 hover:bg-blue-700 text-base-100 text-base dark:bg-violet-600 dark:hover:bg-violet-700 dark:text-white theme-luxury:bg-violet-700 theme-luxury:hover:bg-violet-700 theme-luxury:text-white btn-sm min-h-10 items-center my-auto ml-auto "
+        >
+          New {tableOf}{" "}
+        </button>
       </div>
 
       <Table className="">

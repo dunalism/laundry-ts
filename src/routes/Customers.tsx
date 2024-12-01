@@ -22,7 +22,12 @@ function Customers() {
         className="card min-[1060px]:data-[state=collapsed]:ml-24 xl:w-auto  bg-base-100 min-[1060px]:w-[900px] h-[380px] overflow-auto shadow-lg"
       >
         <div className="card-body">
-          <DataTable columns={custcols} data={customers} searchBy="name" />
+          <DataTable
+            columns={custcols}
+            data={customers}
+            tableOf="customer"
+            searchBy="name"
+          />
         </div>
       </div>
     </div>

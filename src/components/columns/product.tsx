@@ -1,4 +1,4 @@
-import { Products } from "@/lib/definition";
+import { LoginResponse, Products } from "@/lib/definition";
 import { ColumnDef } from "@tanstack/react-table";
 import { PencilLineIcon, Trash2 } from "lucide-react";
 import {
@@ -52,13 +52,19 @@ export const columns: ColumnDef<Products>[] = [
     accessorKey: "Actions",
     cell: ({ row }) => {
       const products = row.original;
+      const user = localStorage.getItem("user") as string;
+      const response: LoginResponse = JSON.parse(
+        user !== "undefined" ? user : `{"token":false}`
+      );
+      const token = response?.token;
+
       return (
         <div data-rows="actions" className="flex gap-3 ">
           <TooltipProvider disableHoverableContent={true} delayDuration={200}>
             <Tooltip>
               <TooltipTrigger>
                 <PencilLineIcon
-                  onClick={() => console.log(products.name)}
+                  onClick={() => console.log(products.id)}
                   className="text-blue-500 dark:text-violet-500 theme-luxury:text-violet-500 "
                 />
               </TooltipTrigger>

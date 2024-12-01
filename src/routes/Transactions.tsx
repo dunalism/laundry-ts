@@ -25,6 +25,7 @@ function Transactions() {
           <DataTable
             columns={transctcols}
             data={totalTransc}
+            tableOf="transaction"
             searchBy="custName"
           />
         </div>
