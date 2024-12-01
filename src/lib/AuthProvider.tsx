@@ -22,6 +22,7 @@ export type Auth = {
   setTransactions: React.Dispatch<any>;
   setTotalTransc: React.Dispatch<any>;
   setToken: React.Dispatch<any>;
+  setConfirm: React.Dispatch<any>;
 };
 
 export type Datas = {
@@ -31,6 +32,7 @@ export type Datas = {
   totalTransc: TransctCol[];
   customers: Customers[];
   token: string;
+  confirm: boolean;
 };
 
 export const AuthContext = createContext<Auth & Datas>({
@@ -49,6 +51,8 @@ export const AuthContext = createContext<Auth & Datas>({
   setTotalTransc: () => {},
   token: "",
   setToken: () => {},
+  confirm: false,
+  setConfirm: () => {},
 });
 
 type Row = {
@@ -69,8 +73,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     transactions: [],
     totalTransc: [],
     token: "",
+    confirm: false,
   };
 
+  const [confirm, setConfirm] = useState(datas?.confirm);
   const [token, setToken] = useState(datas?.token);
   const [totalTransc, setTotalTransc] = useState<TransctCol[]>([]);
   const [products, setProducts] = useState(datas?.products);
@@ -158,6 +164,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setTotalTransc: setTotalTransc,
         token,
         setToken: setToken,
+        confirm,
+        setConfirm: setConfirm,
       }}
     >
       {children}

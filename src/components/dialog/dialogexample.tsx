@@ -24,7 +24,8 @@ export function DialogDemo() {
     data.price = Number(data.price);
     const response = await addProduct(data, token);
     // console.log("data", data);
-    setProducts([...products, response]);
+    setProducts([...products, response?.data]);
+    alert(response?.message);
     reset();
   };
   return (

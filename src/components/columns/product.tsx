@@ -1,4 +1,4 @@
-import { LoginResponse, Products } from "@/lib/definition";
+import { Products } from "@/lib/definition";
 import { ColumnDef } from "@tanstack/react-table";
 import { PencilLineIcon, Trash2 } from "lucide-react";
 import {
@@ -7,8 +7,14 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { deleteProduct } from "@/lib/crud";
 
-export const columns: ColumnDef<Products>[] = [
+export const columns = (
+  filterProduct: (id: number) => void,
+  token: string,
+  confirm: boolean,
+  setConfirm: React.Dispatch<any>
+): ColumnDef<Products>[] => [
   // {belum diperlukan
   //   id: "select",
   //   header: ({ table }) => {
@@ -52,11 +58,23 @@ export const columns: ColumnDef<Products>[] = [
     accessorKey: "Actions",
     cell: ({ row }) => {
       const products = row.original;
-      const user = localStorage.getItem("user") as string;
-      const response: LoginResponse = JSON.parse(
-        user !== "undefined" ? user : `{"token":false}`
-      );
-      const token = response?.token;
+
+      const onDelete = async (id: number) => {
+        const response = await deleteProduct(id, token);
+        filterProduct(id);
+        console.log("id", id);
+        setConfirm(!confirm);
+        alert(response?.message);
+      };
+
+      const onDelete2 = async () => {
+        console.log("confirm dari columns fnc", confirm);
+        setConfirm(!confirm);
+      };
+
+      if (confirm) {
+        onDelete2();
+      }
 
       return (
         <div data-rows="actions" className="flex gap-3 ">
@@ -64,7 +82,9 @@ export const columns: ColumnDef<Products>[] = [
             <Tooltip>
               <TooltipTrigger>
                 <PencilLineIcon
-                  onClick={() => console.log(products.id)}
+                  onClick={() => {
+                    console.log(products.id);
+                  }}
                   className="text-blue-500 dark:text-violet-500 theme-luxury:text-violet-500 "
                 />
               </TooltipTrigger>
@@ -75,7 +95,15 @@ export const columns: ColumnDef<Products>[] = [
           <TooltipProvider disableHoverableContent={true} delayDuration={200}>
             <Tooltip>
               <TooltipTrigger>
-                <Trash2 className="text-red-500 " />
+                <Trash2
+                  onClick={() => {
+                    const modal = document.getElementById(
+                      "confirmDeleteProduct"
+                    );
+                    modal?.click();
+                  }}
+                  className="text-red-500 "
+                />
               </TooltipTrigger>
               <TooltipContent>Delete</TooltipContent>
             </Tooltip>

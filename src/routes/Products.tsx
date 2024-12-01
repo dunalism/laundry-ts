@@ -1,5 +1,5 @@
 import ConfirmLogout from "@/components/alert-confirm/confirm-logout";
-import { columns } from "@/components/columns/product";
+import { columns as baseColumns } from "@/components/columns/product";
 import { DataTable } from "@/components/data-table";
 import { DialogDemo } from "@/components/dialog/dialogexample";
 import { useSidebar } from "@/components/ui/sidebar";
@@ -7,7 +7,15 @@ import { useAuth } from "@/lib/AuthProvider";
 
 function ProductsPage() {
   const { state } = useSidebar();
-  const { products } = useAuth();
+  const { products, token, setProducts, confirm, setConfirm } = useAuth();
+
+  const deleteProduct = (id: number) => {
+    setProducts((prevProducts) =>
+      prevProducts.filter((product) => product.id !== id)
+    );
+  };
+
+  const columns = baseColumns(deleteProduct, token, confirm, setConfirm);
 
   return (
     <div className="container box-border peer md:px-10 ">

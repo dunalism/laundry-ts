@@ -97,5 +97,14 @@ export const addProduct = async (data: Omit<Product, "id">, token: string) => {
       Authorization: `Bearer ${token}`,
     },
   });
-  return response.data.data;
+  return response.data;
+};
+
+export const deleteProduct = async (id: number, token: string) => {
+  const response = await axios.delete(`/products/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
 };
