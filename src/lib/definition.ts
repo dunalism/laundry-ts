@@ -90,6 +90,7 @@ export type Transactions = {
 };
 
 export type TransctCol = {
+  id: number;
   custId: number;
   custName: string;
   totalTransc: string;

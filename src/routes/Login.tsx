@@ -1,36 +1,16 @@
 // import React from 'react'
 
 import ThemeToggle from "@/components/theme-toggle";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { KeyRound, LogIn, User } from "lucide-react";
 import { InputBordered } from "@/components/ui/inputBordered";
 import { Form, Link, Navigate, useNavigation } from "react-router-dom";
 import { useAuth } from "@/lib/AuthProvider";
-
-const loginSchema = z.object({
-  username: z.string().min(1, "Username is required."),
-  password: z.string().min(1, "Password is required."),
-});
 
 function Login() {
   const navigation = useNavigation();
   const submitting: boolean = navigation.state === "submitting";
   const { auth } = useAuth();
   const isLogout = !auth;
-
-  type FormValues = z.infer<typeof loginSchema>;
-  const {
-    register,
-    formState: { errors },
-  } = useForm<FormValues>({
-    resolver: zodResolver(loginSchema),
-  });
-
-  // const onSubmit: SubmitHandler<FormValues> = (data) => {
-  //   alert(`form submitted: ${data}`);
-  // };
 
   if (isLogout) {
     return (
@@ -52,22 +32,16 @@ function Login() {
               login to your dashboard.
             </p>
             <Form method="post" className="w-full mx-auto mt-20">
-              {/* prlineInput */}
-
               <InputBordered
+                name="username" //Form react-router harus memakai name
                 label="Username"
-                {...register("username")}
-                errors={!!errors.username}
-                errorsMessage={errors.username?.message}
                 Icon={<User />}
                 required
               />
 
               <InputBordered
+                name="password"
                 label="Password"
-                {...register("password")}
-                errors={!!errors.password}
-                errorsMessage={errors.password?.message}
                 type="password"
                 Icon={<KeyRound />}
                 required

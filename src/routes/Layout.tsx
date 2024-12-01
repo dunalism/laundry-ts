@@ -3,10 +3,46 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Navigate, Outlet } from "react-router-dom";
 import ThemeToggle from "@/components/theme-toggle";
 import { PanelRight } from "lucide-react";
-import { useAuth } from "@/lib/AuthProvider";
+import { Datas, useAuth } from "@/lib/AuthProvider";
+import { useEffect } from "react";
+import {
+  getCustomers,
+  getProducts,
+  getTransactions,
+  getUsers,
+} from "@/lib/crud";
+import { LoginResponse } from "@/lib/definition";
 
 export default function Layout() {
-  const { auth } = useAuth();
+  const { auth, setDatas } = useAuth();
+  const datas: Datas = {
+    products: [],
+    users: [],
+    customers: [],
+    transactions: [],
+  };
+
+  useEffect(() => {
+    const user = localStorage.getItem("user") as string;
+
+    const response: LoginResponse = JSON.parse(
+      user !== "undefined" ? user : `{"token":false}`
+    );
+
+    const token = response?.token;
+    async function fetchDatas() {
+      datas.products = await getProducts(token);
+      datas.users = await getUsers(token);
+      datas.customers = await getCustomers(token);
+      datas.transactions = await getTransactions(token);
+
+      setDatas(datas);
+    }
+
+    if (auth) {
+      fetchDatas();
+    }
+  }, []);
 
   const isLogged = auth;
   if (isLogged) {

@@ -24,7 +24,6 @@ export const register = async (data) => {
 export const login = async (data) => {
   try {
     const response = await axios.post("/auth/login", data);
-    console.log("response", response);
     toast.success("Login successful. Welcome to the app!");
     return response.data;
   } catch (errorz) {
@@ -40,10 +39,53 @@ export const login = async (data) => {
   }
 };
 
-export const getProducts = async () => {
+export const getProducts = async (token: string) => {
   try {
-    const response = await axios.get("/products");
-    return response.data;
+    const response = await axios.get("/products", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data.data;
+  } catch (error) {
+    console.log("error", error);
+  }
+};
+
+export const getUsers = async (token: string) => {
+  try {
+    const response = await axios.get("/admin/users", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data.data;
+  } catch (error) {
+    console.log("error", error);
+  }
+};
+
+export const getCustomers = async (token: string) => {
+  try {
+    const response = await axios.get("/customers", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data.data;
+  } catch (error) {
+    console.log("error", error);
+  }
+};
+
+export const getTransactions = async (token: string) => {
+  try {
+    const response = await axios.get("/transactions", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data.data;
   } catch (error) {
     console.log("error", error);
   }

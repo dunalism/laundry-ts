@@ -15,7 +15,9 @@ export default function ConfirmLogout() {
   return (
     <AlertDialog>
       <AlertDialogTrigger id="logout" className="hidden">
-        <Button variant="outline">Show Dialog</Button>
+        <Button asChild variant="outline">
+          Show Dialog
+        </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>

@@ -13,7 +13,7 @@ export const transctcols: ColumnDef<TransctCol>[] = [
   { accessorKey: "totalTransc", header: "Amount of transaction" },
   {
     id: "detail",
-    accessorKey: "Transaction details",
+    accessorKey: "details",
     cell: ({ row }) => {
       const transc = row.original;
       return (
