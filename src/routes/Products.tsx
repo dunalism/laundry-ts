@@ -7,7 +7,7 @@ import { useAuth } from "@/lib/AuthProvider";
 
 function ProductsPage() {
   const { state } = useSidebar();
-  const { products, token, setProducts, confirm, setConfirm } = useAuth();
+  const { products, token, setProducts, id, setId } = useAuth();
 
   const deleteProduct = (id: number) => {
     setProducts((prevProducts) =>
@@ -15,7 +15,7 @@ function ProductsPage() {
     );
   };
 
-  const columns = baseColumns(deleteProduct, token, confirm, setConfirm);
+  const columns = baseColumns(deleteProduct, token, id, setId);
 
   return (
     <div className="container box-border peer md:px-10 ">

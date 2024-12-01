@@ -14,7 +14,7 @@ createRoot(document.getElementById("root")!).render(
     <ThemeProvider>
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <RouterProvider future={{ v7_startTransition: true }} router={root} />
-        <ToastContainer pauseOnHover={false} />
+        <ToastContainer autoClose={3000} pauseOnHover={false} />
       </ErrorBoundary>
     </ThemeProvider>
   </StrictMode>

@@ -10,15 +10,8 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/lib/AuthProvider";
 
 export default function ConfirmLogout() {
-  const { confirm, setConfirm } = useAuth();
-
-  const onDelete = () => {
-    setConfirm(!confirm);
-  };
-  console.log("confirm", confirm);
   return (
     <AlertDialog>
       <AlertDialogTrigger id="confirmDeleteProduct" className="hidden">
@@ -36,7 +29,14 @@ export default function ConfirmLogout() {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={onDelete}>Continue</AlertDialogAction>
+          <AlertDialogAction
+            onClick={() => {
+              const onDelete = document.getElementById("deleteProduct");
+              onDelete?.click();
+            }}
+          >
+            Continue
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

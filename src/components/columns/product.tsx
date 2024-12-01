@@ -8,12 +8,13 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { deleteProduct } from "@/lib/crud";
+import { toast } from "react-toastify";
 
 export const columns = (
   filterProduct: (id: number) => void,
   token: string,
-  confirm: boolean,
-  setConfirm: React.Dispatch<any>
+  id: number,
+  setId: React.Dispatch<any>
 ): ColumnDef<Products>[] => [
   // {belum diperlukan
   //   id: "select",
@@ -62,19 +63,14 @@ export const columns = (
       const onDelete = async (id: number) => {
         const response = await deleteProduct(id, token);
         filterProduct(id);
-        console.log("id", id);
-        setConfirm(!confirm);
-        alert(response?.message);
+        setTimeout(() => {
+          toast.success(response?.message);
+        }, 250);
       };
 
-      const onDelete2 = async () => {
-        console.log("confirm dari columns fnc", confirm);
-        setConfirm(!confirm);
+      const selectId = async (id: number) => {
+        setId(id);
       };
-
-      if (confirm) {
-        onDelete2();
-      }
 
       return (
         <div data-rows="actions" className="flex gap-3 ">
@@ -100,6 +96,7 @@ export const columns = (
                     const modal = document.getElementById(
                       "confirmDeleteProduct"
                     );
+                    selectId(row.original.id);
                     modal?.click();
                   }}
                   className="text-red-500 "
@@ -108,6 +105,13 @@ export const columns = (
               <TooltipContent>Delete</TooltipContent>
             </Tooltip>
           </TooltipProvider>
+          <button
+            className="hidden"
+            id="deleteProduct"
+            onClick={() => onDelete(id)}
+          >
+            hapus
+          </button>
         </div>
       );
     },

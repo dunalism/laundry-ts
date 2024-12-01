@@ -22,7 +22,7 @@ export default function Layout() {
     transactions: [],
     totalTransc: [],
     token: "",
-    confirm: false,
+    id: 0,
   };
 
   useEffect(() => {

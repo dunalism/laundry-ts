@@ -12,6 +12,7 @@ import { useAuth } from "@/lib/AuthProvider";
 import { addProduct } from "@/lib/crud";
 import { Product } from "@/lib/definition";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 export function DialogDemo() {
   const { token, products, setProducts } = useAuth();
@@ -25,7 +26,9 @@ export function DialogDemo() {
     const response = await addProduct(data, token);
     // console.log("data", data);
     setProducts([...products, response?.data]);
-    alert(response?.message);
+    setTimeout(() => {
+      toast.success(response?.message);
+    }, 250);
     reset();
   };
   return (

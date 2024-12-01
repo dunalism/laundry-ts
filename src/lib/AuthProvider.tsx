@@ -22,7 +22,7 @@ export type Auth = {
   setTransactions: React.Dispatch<any>;
   setTotalTransc: React.Dispatch<any>;
   setToken: React.Dispatch<any>;
-  setConfirm: React.Dispatch<any>;
+  setId: React.Dispatch<any>;
 };
 
 export type Datas = {
@@ -32,7 +32,7 @@ export type Datas = {
   totalTransc: TransctCol[];
   customers: Customers[];
   token: string;
-  confirm: boolean;
+  id: number;
 };
 
 export const AuthContext = createContext<Auth & Datas>({
@@ -51,8 +51,8 @@ export const AuthContext = createContext<Auth & Datas>({
   setTotalTransc: () => {},
   token: "",
   setToken: () => {},
-  confirm: false,
-  setConfirm: () => {},
+  id: 0,
+  setId: () => {},
 });
 
 type Row = {
@@ -73,10 +73,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     transactions: [],
     totalTransc: [],
     token: "",
-    confirm: false,
+    id: 0,
   };
 
-  const [confirm, setConfirm] = useState(datas?.confirm);
+  const [id, setId] = useState(datas?.id);
   const [token, setToken] = useState(datas?.token);
   const [totalTransc, setTotalTransc] = useState<TransctCol[]>([]);
   const [products, setProducts] = useState(datas?.products);
@@ -164,8 +164,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setTotalTransc: setTotalTransc,
         token,
         setToken: setToken,
-        confirm,
-        setConfirm: setConfirm,
+        id,
+        setId: setId,
       }}
     >
       {children}
