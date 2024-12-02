@@ -9,12 +9,4 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  server: {
-    proxy: {
-      "/api": {
-        target: "https://lyrical-hissing-sight.glitch.me",
-        changeOrigin: true,
-      },
-    },
-  },
 });
