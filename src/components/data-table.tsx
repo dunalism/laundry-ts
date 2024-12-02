@@ -36,7 +36,7 @@ interface DataTableProps<TData extends { id: number }, TValue> {
   data: TData[];
   searchBy: string;
   tableOf?: string;
-  modal: string;
+  modal?: string;
 }
 
 export function DataTable<TData extends { id: number }, TValue>({
@@ -134,7 +134,7 @@ export function DataTable<TData extends { id: number }, TValue>({
         {tableOf && (
           <button
             onClick={() => {
-              const logout = document.getElementById(modal);
+              const logout = document.getElementById(modal as string);
               logout?.click();
             }}
             className="btn bg-blue-600 hover:bg-blue-700 text-base-100 text-base dark:bg-violet-600 dark:hover:bg-violet-700 dark:text-white theme-luxury:bg-violet-700 theme-luxury:hover:bg-violet-700 theme-luxury:text-white btn-sm min-h-10 items-center my-auto ml-auto "

@@ -3,7 +3,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 
 const ThemeContext = createContext({
   theme: "garden",
-  setTheme: (theme: string) => {},
+  setTheme: (_theme: string) => {},
 });
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
