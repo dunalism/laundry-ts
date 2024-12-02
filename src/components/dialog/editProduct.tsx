@@ -9,39 +9,63 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 import { useAuth } from "@/lib/AuthProvider";
-import { addProduct } from "@/lib/crud";
-import { Product } from "@/lib/definition";
-import { formatRupiah } from "@/lib/utils";
+import { editProduct } from "@/lib/crud";
+import { Product, Products } from "@/lib/definition";
+import { formatRupiah, reverseFormatRupiah } from "@/lib/utils";
+import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
-export default function AddProduct() {
-  const { token, products, setProducts } = useAuth();
+export default function EditProduct() {
+  const { token, products, setProducts, id } = useAuth();
 
-  const { register, handleSubmit, reset } = useForm<Omit<Product, "id">>({
-    mode: "onTouched", //tidak digunakan
-  });
+  const { register, handleSubmit, reset } = useForm<Product>({});
 
-  const onSubmit: SubmitHandler<Omit<Product, "id">> = async (data) => {
+  const onSubmit: SubmitHandler<Product> = async (data) => {
     data.price = Number(data.price);
-    const response = await addProduct(data, token);
+    const response = await editProduct(data, token, id);
     data.price = formatRupiah(data.price);
-    setProducts([...products, data]);
+    const index = products.findIndex((prod) => prod.id === id);
+    products[index] = data as Products;
+
+    setProducts([...products]);
     setTimeout(() => {
       toast.success(response?.message);
     }, 250);
     reset();
   };
+
+  useEffect(() => {
+    const defaultProduct = products.find((prod) => prod.id === id) as Product;
+    reset({
+      id: defaultProduct?.id,
+      name: defaultProduct?.name,
+      price: reverseFormatRupiah(defaultProduct?.price),
+      type: defaultProduct?.type,
+    });
+  }, [id, products, reset]);
+
   return (
     <Dialog>
-      <DialogTrigger id="addProduct" className="hidden" asChild>
+      <DialogTrigger id="editProduct" className="hidden" asChild>
         <Button variant="outline"></Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] max-h-[478px] overflow-auto ">
         <DialogHeader>
-          <DialogTitle>Add Product</DialogTitle>
+          <DialogTitle>Edit Product</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)} className="w-auto" action="">
+          <label className="form-control mb-2 w-full">
+            <div className="label">
+              <span className="label-text">Product name</span>
+            </div>
+            <input
+              {...register("id")}
+              type="number"
+              className="input input-bordered w-full hidden"
+              required
+            />
+          </label>
           <label className="form-control mb-2 w-full">
             <div className="label">
               <span className="label-text">Product name</span>

@@ -10,7 +10,7 @@ import {
   UsersData,
 } from "./definition";
 import { useNavigate } from "react-router-dom";
-import { formatTanggal } from "./utils";
+import { formatRupiah, formatTanggal } from "./utils";
 
 export type Auth = {
   setDatas: (datas: Datas) => void;
@@ -105,6 +105,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const setDatas = (datas: Datas) => {
+    //modifikasi data yang telah difetch
     if (datas.users) {
       const updatedUsers = datas.users.map((user) => ({
         ...user,
@@ -112,8 +113,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       }));
       setUsers(updatedUsers);
     }
-    setProducts(datas?.products);
-    // setUsers(datas?.users);
+
     if (datas.customers) {
       const updatedCust = datas.customers.map((cust) => ({
         ...cust,
@@ -121,6 +121,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       }));
       setCustomers(updatedCust);
     }
+
+    if (datas.products) {
+      const updatedProd = datas.products.map((prod) => ({
+        ...prod,
+        price: formatRupiah(prod.price),
+      }));
+      setProducts(updatedProd);
+    }
+
     if (datas.transactions) {
       const updatedTransct = datas.transactions
         .reduce((acc: Row[], bill) => {

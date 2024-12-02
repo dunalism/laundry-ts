@@ -22,6 +22,23 @@ export function formatTanggal(tanggal) {
   return date.replace(/\//g, "-");
 }
 
+export const formatRupiah = (angka) => {
+  return new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(angka);
+};
+
+export const reverseFormatRupiah = (rupiah) => {
+  // Menghapus simbol mata uang dan tanda titik
+  const numberString = rupiah?.replace(/[^0-9,-]+/g, "");
+  // Mengganti tanda koma dengan titik desimal
+  const number = numberString?.replace(",", ".");
+  return parseFloat(number);
+};
+
 export async function registerAction({ request }) {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);

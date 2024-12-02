@@ -58,8 +58,6 @@ export const columns = (
     id: "actions",
     accessorKey: "Actions",
     cell: ({ row }) => {
-      const products = row.original;
-
       const onDelete = async (id: number) => {
         const response = await deleteProduct(id, token);
         filterProduct(id);
@@ -79,7 +77,9 @@ export const columns = (
               <TooltipTrigger>
                 <PencilLineIcon
                   onClick={() => {
-                    console.log(products.id);
+                    selectId(row.original.id);
+                    const modal = document.getElementById("editProduct");
+                    modal?.click();
                   }}
                   className="text-blue-500 dark:text-violet-500 theme-luxury:text-violet-500 "
                 />

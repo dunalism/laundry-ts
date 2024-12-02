@@ -48,7 +48,7 @@ export type Admin = {
 export type Products = {
   id: number;
   name: string;
-  price: number;
+  price: number | string;
   createdAt: string;
   type: string;
 };
@@ -56,7 +56,7 @@ export type Products = {
 export type Product = {
   id: number;
   name: string;
-  price: number;
+  price: number | string;
   type: string;
 };
 

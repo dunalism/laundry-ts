@@ -1,7 +1,8 @@
-import ConfirmLogout from "@/components/alert-confirm/confirm-logout";
+import ConfirmDelete from "@/components/alert-confirm/confirmDelete";
 import { columns as baseColumns } from "@/components/columns/product";
 import { DataTable } from "@/components/data-table";
-import { DialogDemo } from "@/components/dialog/dialogexample";
+import AddProduct from "@/components/dialog/addProduct";
+import EditProduct from "@/components/dialog/editProduct";
 import { useSidebar } from "@/components/ui/sidebar";
 import { useAuth } from "@/lib/AuthProvider";
 
@@ -37,9 +38,11 @@ function ProductsPage() {
             data={products}
             tableOf="product"
             searchBy="name"
+            modal="addProduct"
           />
-          <ConfirmLogout />
-          <DialogDemo />
+          <ConfirmDelete />
+          <AddProduct />
+          <EditProduct />
         </div>
       </div>
     </div>

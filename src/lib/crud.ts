@@ -100,6 +100,15 @@ export const addProduct = async (data: Omit<Product, "id">, token: string) => {
   return response.data;
 };
 
+export const editProduct = async (data: Product, token: string, id: number) => {
+  const response = await axios.put(`/products/${id}`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+};
+
 export const deleteProduct = async (id: number, token: string) => {
   const response = await axios.delete(`/products/${id}`, {
     headers: {

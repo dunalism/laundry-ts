@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 
-export default function ConfirmLogout() {
+export default function ConfirmDelete() {
   return (
     <AlertDialog>
       <AlertDialogTrigger id="confirmDeleteProduct" className="hidden">
@@ -24,7 +24,7 @@ export default function ConfirmLogout() {
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
             This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
+            product and remove your data from our servers.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
