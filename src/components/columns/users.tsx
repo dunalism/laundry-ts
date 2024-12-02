@@ -7,8 +7,15 @@ import {
   TooltipTrigger,
 } from "../ui/tooltip";
 import { PencilLineIcon, Trash2 } from "lucide-react";
+import { deleteProduct } from "@/lib/crud";
+import { toast } from "react-toastify";
 
-export const usercols: ColumnDef<UsersData>[] = [
+export const usercols = (
+  filterUsers: (id: number) => void,
+  token: string,
+  id: number,
+  setId: React.Dispatch<any>
+): ColumnDef<UsersData>[] => [
   { accessorKey: "name", header: "Name" },
   { accessorKey: "username", header: "Username" },
   { accessorKey: "email", header: "Email" },
@@ -18,14 +25,25 @@ export const usercols: ColumnDef<UsersData>[] = [
     id: "actions",
     accessorKey: "Actions",
     cell: ({ row }) => {
-      const users = row.original;
+      const onDelete = async (id: number) => {
+        const response = await deleteProduct(id, token);
+        filterUsers(id);
+        setTimeout(() => {
+          toast.success(response?.message);
+        }, 250);
+      };
+
       return (
         <div data-rows="actions" className="flex gap-3 ">
           <TooltipProvider disableHoverableContent={true} delayDuration={200}>
             <Tooltip>
               <TooltipTrigger>
                 <PencilLineIcon
-                  onClick={() => console.log(users.name)}
+                  onClick={() => {
+                    setId(row.original.id);
+                    const modal = document.getElementById("editUsers");
+                    modal?.click();
+                  }}
                   className="text-blue-500 "
                 />
               </TooltipTrigger>
@@ -36,11 +54,25 @@ export const usercols: ColumnDef<UsersData>[] = [
           <TooltipProvider disableHoverableContent={true} delayDuration={200}>
             <Tooltip>
               <TooltipTrigger>
-                <Trash2 className="text-red-500 " />
+                <Trash2
+                  onClick={() => {
+                    const modal = document.getElementById("confirmDeleteUser");
+                    setId(row.original.id);
+                    modal?.click();
+                  }}
+                  className="text-red-500 "
+                />
               </TooltipTrigger>
               <TooltipContent>Delete</TooltipContent>
             </Tooltip>
           </TooltipProvider>
+          <button
+            className="hidden"
+            id="deleteUser"
+            onClick={() => onDelete(id)}
+          >
+            hapus
+          </button>
         </div>
       );
     },

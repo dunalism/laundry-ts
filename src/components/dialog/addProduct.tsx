@@ -26,7 +26,7 @@ export default function AddProduct() {
     data.price = Number(data.price);
     const response = await addProduct(data, token);
     data.price = formatRupiah(data.price);
-    setProducts([...products, data]);
+    setProducts([...products, response?.data]);
     setTimeout(() => {
       toast.success(response?.message);
     }, 250);

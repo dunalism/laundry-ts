@@ -1,11 +1,17 @@
 import { DataTable } from "@/components/data-table";
 import { useSidebar } from "@/components/ui/sidebar";
 import { useAuth } from "@/lib/AuthProvider";
-import { usercols } from "@/components/columns/users";
+import { usercols as baseColumns } from "@/components/columns/users";
 
 function Users() {
   const { state } = useSidebar();
-  const { users } = useAuth();
+  const { users, token, setUsers, id, setId } = useAuth();
+
+  const deleteUser = (id: number) => {
+    setUsers((prevUser) => prevUser.filter((user) => user.id !== id));
+  };
+
+  const columns = baseColumns(deleteUser, token, id, setId);
 
   return (
     <div className="container box-border peer md:px-10 ">
@@ -23,9 +29,9 @@ function Users() {
       >
         <div className="card-body">
           <DataTable
-            columns={usercols}
+            columns={columns}
             data={users}
-            tableOf="user"
+            modal="editUsers"
             searchBy="name"
           />
         </div>

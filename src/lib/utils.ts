@@ -33,7 +33,8 @@ export const formatRupiah = (angka) => {
 
 export const reverseFormatRupiah = (rupiah) => {
   // Menghapus simbol mata uang dan tanda titik
-  const numberString = rupiah?.replace(/[^0-9,-]+/g, "");
+  const edit = `${rupiah}`;
+  const numberString = edit?.replace(/[^0-9,-]+/g, "");
   // Mengganti tanda koma dengan titik desimal
   const number = numberString?.replace(",", ".");
   return parseFloat(number);

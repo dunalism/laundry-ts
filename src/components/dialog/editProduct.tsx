@@ -23,6 +23,7 @@ export default function EditProduct() {
 
   const onSubmit: SubmitHandler<Product> = async (data) => {
     data.price = Number(data.price);
+
     const response = await editProduct(data, token, id);
     data.price = formatRupiah(data.price);
     const index = products.findIndex((prod) => prod.id === id);
@@ -38,7 +39,7 @@ export default function EditProduct() {
   useEffect(() => {
     const defaultProduct = products.find((prod) => prod.id === id) as Product;
     reset({
-      id: defaultProduct?.id,
+      id: id,
       name: defaultProduct?.name,
       price: reverseFormatRupiah(defaultProduct?.price),
       type: defaultProduct?.type,
@@ -55,15 +56,14 @@ export default function EditProduct() {
           <DialogTitle>Edit Product</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)} className="w-auto" action="">
-          <label className="form-control mb-2 w-full">
+          <label className="form-control mb-2 w-full hidden">
             <div className="label">
               <span className="label-text">Product name</span>
             </div>
             <input
               {...register("id")}
               type="number"
-              className="input input-bordered w-full hidden"
-              required
+              className="input input-bordered w-full"
             />
           </label>
           <label className="form-control mb-2 w-full">

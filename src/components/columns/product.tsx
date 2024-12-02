@@ -66,10 +66,6 @@ export const columns = (
         }, 250);
       };
 
-      const selectId = async (id: number) => {
-        setId(id);
-      };
-
       return (
         <div data-rows="actions" className="flex gap-3 ">
           <TooltipProvider disableHoverableContent={true} delayDuration={200}>
@@ -77,7 +73,7 @@ export const columns = (
               <TooltipTrigger>
                 <PencilLineIcon
                   onClick={() => {
-                    selectId(row.original.id);
+                    setId(row.original.id);
                     const modal = document.getElementById("editProduct");
                     modal?.click();
                   }}
@@ -96,7 +92,7 @@ export const columns = (
                     const modal = document.getElementById(
                       "confirmDeleteProduct"
                     );
-                    selectId(row.original.id);
+                    setId(row.original.id);
                     modal?.click();
                   }}
                   className="text-red-500 "
