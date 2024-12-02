@@ -11,10 +11,16 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 
-export default function ConfirmDelete() {
+export default function ConfirmDelete({
+  click,
+  modal,
+}: {
+  click: string;
+  modal: string;
+}) {
   return (
     <AlertDialog>
-      <AlertDialogTrigger id="confirmDeleteProduct" className="hidden">
+      <AlertDialogTrigger id={modal} className="hidden">
         <Button asChild variant="outline">
           Show Dialog
         </Button>
@@ -31,7 +37,7 @@ export default function ConfirmDelete() {
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction
             onClick={() => {
-              const onDelete = document.getElementById("deleteProduct");
+              const onDelete = document.getElementById(`${click}`);
               onDelete?.click();
             }}
           >

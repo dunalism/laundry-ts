@@ -25,8 +25,10 @@ export default function AddProduct() {
   const onSubmit: SubmitHandler<Omit<Product, "id">> = async (data) => {
     data.price = Number(data.price);
     const response = await addProduct(data, token);
-    data.price = formatRupiah(data.price);
-    setProducts([...products, response?.data]);
+    const updatedProduct: Product = response?.data;
+    updatedProduct.price = formatRupiah(updatedProduct.price);
+
+    setProducts([...products, updatedProduct]);
     setTimeout(() => {
       toast.success(response?.message);
     }, 250);
@@ -84,11 +86,11 @@ export default function AddProduct() {
           </label>
 
           <DialogFooter className="flex  flex-row">
-            <DialogClose id="add-product" className="mr-auto" asChild>
+            <DialogClose className="mr-auto" asChild>
               <Button variant="cancel">cancel</Button>
             </DialogClose>
 
-            <Button type="submit">Save changes</Button>
+            <Button type="submit">Save</Button>
           </DialogFooter>
         </form>
       </DialogContent>

@@ -7,7 +7,7 @@ import {
   TooltipTrigger,
 } from "../ui/tooltip";
 import { PencilLineIcon, Trash2 } from "lucide-react";
-import { deleteProduct } from "@/lib/crud";
+import { deleteUsers } from "@/lib/crud";
 import { toast } from "react-toastify";
 
 export const usercols = (
@@ -26,7 +26,7 @@ export const usercols = (
     accessorKey: "Actions",
     cell: ({ row }) => {
       const onDelete = async (id: number) => {
-        const response = await deleteProduct(id, token);
+        const response = await deleteUsers(id, token);
         filterUsers(id);
         setTimeout(() => {
           toast.success(response?.message);

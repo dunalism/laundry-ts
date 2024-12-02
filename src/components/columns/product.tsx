@@ -60,10 +60,12 @@ export const columns = (
     cell: ({ row }) => {
       const onDelete = async (id: number) => {
         const response = await deleteProduct(id, token);
-        filterProduct(id);
-        setTimeout(() => {
-          toast.success(response?.message);
-        }, 250);
+        if (response) {
+          filterProduct(id);
+          setTimeout(() => {
+            toast.success(response?.message);
+          }, 250);
+        }
       };
 
       return (

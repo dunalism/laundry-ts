@@ -40,7 +40,7 @@ function ProductsPage() {
             searchBy="name"
             modal="addProduct"
           />
-          <ConfirmDelete />
+          <ConfirmDelete modal="confirmDeleteProduct" click="deleteProduct" />
           <AddProduct />
           <EditProduct />
         </div>

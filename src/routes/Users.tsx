@@ -2,6 +2,8 @@ import { DataTable } from "@/components/data-table";
 import { useSidebar } from "@/components/ui/sidebar";
 import { useAuth } from "@/lib/AuthProvider";
 import { usercols as baseColumns } from "@/components/columns/users";
+import ConfirmDelete from "@/components/alert-confirm/confirmDelete";
+import EditUsers from "@/components/dialog/editUser";
 
 function Users() {
   const { state } = useSidebar();
@@ -34,6 +36,8 @@ function Users() {
             modal="editUsers"
             searchBy="name"
           />
+          <ConfirmDelete modal="confirmDeleteUser" click="deleteUser" />
+          <EditUsers />
         </div>
       </div>
     </div>

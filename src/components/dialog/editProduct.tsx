@@ -29,11 +29,13 @@ export default function EditProduct() {
     const index = products.findIndex((prod) => prod.id === id);
     products[index] = data as Products;
 
-    setProducts([...products]);
-    setTimeout(() => {
-      toast.success(response?.message);
-    }, 250);
-    reset();
+    if (response) {
+      setProducts([...products]);
+      setTimeout(() => {
+        toast.success(response?.message);
+      }, 250);
+      reset();
+    }
   };
 
   useEffect(() => {
@@ -108,7 +110,7 @@ export default function EditProduct() {
           </label>
 
           <DialogFooter className="flex  flex-row">
-            <DialogClose id="add-product" className="mr-auto" asChild>
+            <DialogClose className="mr-auto" asChild>
               <Button variant="cancel">cancel</Button>
             </DialogClose>
 

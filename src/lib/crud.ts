@@ -1,5 +1,5 @@
 import axios from "@/lib/utils";
-import { AxiosError, Product } from "./definition";
+import { AxiosError, Product, UsersData } from "./definition";
 import { toast } from "react-toastify";
 
 export const register = async (data) => {
@@ -92,25 +92,68 @@ export const getTransactions = async (token: string) => {
 };
 
 export const addProduct = async (data: Omit<Product, "id">, token: string) => {
-  const response = await axios.post("/products", data, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  return response.data;
+  try {
+    const response = await axios.post("/products", data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    const errorx = error as AxiosError;
+    toast.error(errorx.response.data.message);
+  }
 };
 
 export const editProduct = async (data: Product, token: string, id: number) => {
-  const response = await axios.put(`/products/${id}`, data, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  return response.data;
+  try {
+    const response = await axios.put(`/products/${id}`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    const errorx = error as AxiosError;
+    toast.error(errorx.response.data.message);
+  }
 };
 
 export const deleteProduct = async (id: number, token: string) => {
-  const response = await axios.delete(`/products/${id}`, {
+  try {
+    const response = await axios.delete(`/products/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    const errorx = error as AxiosError;
+    toast.error(errorx.response.data.message);
+  }
+};
+
+export const editUsers = async (
+  data: Omit<UsersData, "createdAt">,
+  token: string,
+  id: number
+) => {
+  try {
+    const response = await axios.put(`/owner/users/${id}`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    const errorx = error as AxiosError;
+    toast.error(errorx.response.data.error);
+    toast.error(errorx.response.data.message);
+  }
+};
+
+export const deleteUsers = async (id: number, token: string) => {
+  const response = await axios.delete(`/admin/users/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
